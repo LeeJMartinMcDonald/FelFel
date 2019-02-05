@@ -14,8 +14,9 @@ namespace Entities
         }
 
         public long Id { get; set; }
-        public DateTime CheckedInDate {get;set;}
+        public DateTime CheckedInDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public int ExpiringTime { get; set; }
 
         public Order Order { get; set; }
         public Product Product { get; set; }
