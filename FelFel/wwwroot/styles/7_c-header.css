@@ -22,12 +22,20 @@
   top: 0;
   z-index: 5;
 }
-.c-header__logo-image {
+.c-header__logo {
   position: absolute;
+  left: 20px;
+  top: 20px;
+}
+.c-header__logo-image {
   display: block;
-  height: 170px;
-  width: 170px;
+  height: 120px;
+  width: 120px;
 }
 .c-header__logo-link {
   display: block;
+}
+.c-header__title-text {
+  text-align: center;
+  margin: 30px 0;
 }

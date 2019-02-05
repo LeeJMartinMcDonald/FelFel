@@ -4,7 +4,7 @@
   {
     "outputFileName": "wwwroot/styles/felfel.min.css",
     "inputFiles": [
-      "wwwroot/styles/*.css"
+      "wwwroot/styles/*.min.css"
     ],
     // Optionally specify minification options
     "minify": {
