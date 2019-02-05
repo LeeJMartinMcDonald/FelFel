@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7415e3a4f4c5426e2c61"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "eac7f6968828fba4f400"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -34634,18 +34634,20 @@ function getBaseUrl() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_config__ = __webpack_require__(676);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_alert_alert_component__ = __webpack_require__(677);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_app_app_component__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_site_footer_site_footer_component__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_site_header_site_header_component__ = __webpack_require__(682);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_site_menu_site_menu_component__ = __webpack_require__(684);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_welcome_welcome_component__ = __webpack_require__(686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_alert_service__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_external_resource_service__ = __webpack_require__(688);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_batches_batches_component__ = __webpack_require__(680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_site_footer_site_footer_component__ = __webpack_require__(682);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_site_header_site_header_component__ = __webpack_require__(684);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_site_menu_site_menu_component__ = __webpack_require__(686);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_welcome_welcome_component__ = __webpack_require__(688);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_alert_service__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_external_resource_service__ = __webpack_require__(690);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -34676,10 +34678,11 @@ var AppModuleShared = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_14__components_alert_alert_component__["a" /* AlertComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__components_app_app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__components_site_footer_site_footer_component__["a" /* SiteFooterComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__components_site_header_site_header_component__["a" /* SiteHeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__components_site_menu_site_menu_component__["a" /* SiteMenuComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__components_welcome_welcome_component__["a" /* WelcomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__components_batches_batches_component__["a" /* BatchesComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__components_site_footer_site_footer_component__["a" /* SiteFooterComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__components_site_header_site_header_component__["a" /* SiteHeaderComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__components_site_menu_site_menu_component__["a" /* SiteMenuComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__components_welcome_welcome_component__["a" /* WelcomeComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["BrowserModule"],
@@ -34694,7 +34697,8 @@ var AppModuleShared = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__progress_kendo_angular_label__["a" /* LabelModule */],
                 __WEBPACK_IMPORTED_MODULE_6__angular_router__["RouterModule"].forRoot([
                     { path: "", redirectTo: "welcome", pathMatch: "full" },
-                    { path: "welcome", component: __WEBPACK_IMPORTED_MODULE_19__components_welcome_welcome_component__["a" /* WelcomeComponent */] },
+                    { path: "welcome", component: __WEBPACK_IMPORTED_MODULE_20__components_welcome_welcome_component__["a" /* WelcomeComponent */] },
+                    { path: "batches", component: __WEBPACK_IMPORTED_MODULE_16__components_batches_batches_component__["a" /* BatchesComponent */] },
                     { path: "**", redirectTo: "welcome" }
                 ], {
                     useHash: true
@@ -34702,8 +34706,8 @@ var AppModuleShared = /** @class */ (function () {
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_13__app_config__["a" /* AppConfig */],
-                __WEBPACK_IMPORTED_MODULE_20__services_alert_service__["a" /* AlertService */],
-                __WEBPACK_IMPORTED_MODULE_21__services_external_resource_service__["a" /* ExternalResourceService */]
+                __WEBPACK_IMPORTED_MODULE_21__services_alert_service__["a" /* AlertService */],
+                __WEBPACK_IMPORTED_MODULE_22__services_external_resource_service__["a" /* ExternalResourceService */]
             ]
         })
     ], AppModuleShared);
@@ -55875,10 +55879,48 @@ module.exports = "<div class=\"c-alert\" \r\n    [ngClass]=\"{\r\n        'c-ale
 /* 679 */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"c-header\"></header>\r\n<main role=\"main\" class=\"c-main bg-grey\">\r\n    <site-menu></site-menu>\r\n    <router-outlet></router-outlet>\r\n    <alert></alert>\r\n</main>\r\n<footer class=\"c-footer bg-white\"></footer>";
+module.exports = "<header class=\"c-header\"></header>\r\n<main role=\"main\" class=\"c-main\">\r\n    <alert></alert>\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4 c-menu-container\">\r\n            <site-menu></site-menu>\r\n        </div>\r\n        <div class=\"lf-3x4 bg-grey c-content-container\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</main>\r\n<footer class=\"c-footer bg-white\"></footer>";
 
 /***/ }),
 /* 680 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BatchesComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var BatchesComponent = /** @class */ (function () {
+    function BatchesComponent() {
+    }
+    BatchesComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: "batches",
+            template: __webpack_require__(681)
+        }),
+        __metadata("design:paramtypes", [])
+    ], BatchesComponent);
+    return BatchesComponent;
+}());
+
+//# sourceMappingURL=batches.component.js.map
+
+/***/ }),
+/* 681 */
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Batches</h2>";
+
+/***/ }),
+/* 682 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55900,7 +55942,7 @@ var SiteFooterComponent = /** @class */ (function () {
     SiteFooterComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "footer",
-            template: __webpack_require__(681)
+            template: __webpack_require__(683)
         }),
         __metadata("design:paramtypes", [])
     ], SiteFooterComponent);
@@ -55910,13 +55952,13 @@ var SiteFooterComponent = /** @class */ (function () {
 //# sourceMappingURL=site.footer.component.js.map
 
 /***/ }),
-/* 681 */
+/* 683 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"l-w-90 ty-center\">\r\n    <p class=\"c-footer__text\">&copy; FelFel - This application is for demonstration purposes only</p>\r\n</div>";
 
 /***/ }),
-/* 682 */
+/* 684 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55938,7 +55980,7 @@ var SiteHeaderComponent = /** @class */ (function () {
     SiteHeaderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "header",
-            template: __webpack_require__(683)
+            template: __webpack_require__(685)
         }),
         __metadata("design:paramtypes", [])
     ], SiteHeaderComponent);
@@ -55948,13 +55990,13 @@ var SiteHeaderComponent = /** @class */ (function () {
 //# sourceMappingURL=site.header.component.js.map
 
 /***/ }),
-/* 683 */
+/* 685 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"l-w-90\">\r\n    <div class=\"c-header__logo\">\r\n        <a href=\"/\" class=\"c-header__logo-link\">\r\n            <img alt=\"FELFEL Logo\" class=\"c-header__logo-image\" src=\"/images/felfel-logo.svg\">\r\n        </a>\r\n    </div>\r\n\r\n    <h1 class=\"c-header__title-text\">\r\n        Inventory Management\r\n    </h1>\r\n</div>";
+module.exports = "<div class=\"l-w-90\">\r\n    <div class=\"c-header__logo\">\r\n        <a [routerLink]=\"['/welcome']\" class=\"c-header__logo-link\">\r\n            <img alt=\"FELFEL Logo\" class=\"c-header__logo-image\" src=\"/images/felfel-logo.svg\">\r\n        </a>\r\n    </div>        \r\n\r\n    <h1 class=\"c-header__title-text ty-uppercase\">\r\n        Inventory Management\r\n    </h1>\r\n</div>";
 
 /***/ }),
-/* 684 */
+/* 686 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55976,7 +56018,7 @@ var SiteMenuComponent = /** @class */ (function () {
     SiteMenuComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "site-menu",
-            template: __webpack_require__(685)
+            template: __webpack_require__(687)
         }),
         __metadata("design:paramtypes", [])
     ], SiteMenuComponent);
@@ -55986,13 +56028,13 @@ var SiteMenuComponent = /** @class */ (function () {
 //# sourceMappingURL=site.menu.component.js.map
 
 /***/ }),
-/* 685 */
+/* 687 */
 /***/ (function(module, exports) {
 
-module.exports = "menu";
+module.exports = "<ul class=\"c-menu u-reset-list\">\r\n    <li class=\"c-menu__item\" [routerLinkActive]=\"['c-menu__item--active']\">\r\n        <a class=\"c-menu__item-link lf-row lf-align-center lf-justify-center\" [routerLink]=\"['/batches']\">\r\n            <div class=\"lf-row lf-align-items-center\">\r\n                <span class=\"c-menu__item-text\">Batches</span>\r\n            </div>\r\n        </a>\r\n    </li>\r\n</ul>";
 
 /***/ }),
-/* 686 */
+/* 688 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56014,7 +56056,7 @@ var WelcomeComponent = /** @class */ (function () {
     WelcomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "welcome",
-            template: __webpack_require__(687)
+            template: __webpack_require__(689)
         }),
         __metadata("design:paramtypes", [])
     ], WelcomeComponent);
@@ -56024,13 +56066,13 @@ var WelcomeComponent = /** @class */ (function () {
 //# sourceMappingURL=welcome.component.js.map
 
 /***/ }),
-/* 687 */
+/* 689 */
 /***/ (function(module, exports) {
 
-module.exports = "welcome";
+module.exports = "<h2>Welcome to FelFel Inventory Management</h2>\r\n<p>Please use the menu on the left to navigate around.</p>";
 
 /***/ }),
-/* 688 */
+/* 690 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
