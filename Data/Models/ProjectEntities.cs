@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Models
 {
@@ -27,6 +28,14 @@ namespace Data.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }
+
+        public virtual DbSet<Batch> Batches { get; set; }
+        public virtual DbSet<BatchItem> BatchItems { get; set; }
+        public virtual DbSet<CorrectionReason> CorrectionReasons { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
     }
 }
 

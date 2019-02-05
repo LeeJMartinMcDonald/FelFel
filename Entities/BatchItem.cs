@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Entities
+{
+    [Table("BatchItems")]
+
+    public partial class BatchItem
+    {
+        public BatchItem()
+        {
+        }
+
+        public long Id { get; set; }
+        public int Quantity { get; set; }
+        public int Date { get; set; }
+
+        public Batch Batch { get; set; }
+        public Customer Customer { get; set; }
+        public CorrectionReason CorrectionReason {get; set;}
+    }
+}
