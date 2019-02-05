@@ -1,0 +1,73 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+@import (reference) "4_i-icons.less";
+@import (reference) "4_lf-layout-flex.less";
+@import (reference) "4_l-layouts.less";
+@import (reference) "4_ty-typography.less";
+@import (reference) "8_u-utilities.less";
+
+/* Buttons - b-button - generic commonly used button styles */
+
+.b-button {
+    .transition(background-color, ease-out, 0.1s);
+    .ty-center;
+    align-items: center;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 15px;
+    font-size: inherit;
+
+    &:hover {
+        .transition(background-color, ease-out, 0.1s);
+    }
+}
+
+.b-primary {
+    .b-button;
+    .font-size(22);
+    .l-relative;
+    .ty-uppercase;
+    color: @colour-white;
+    background-color: @brand-primary;
+    padding: 2% 10%;
+
+    @media (max-width: @break-point-mobile) {
+        width: 100%;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+.b-secondary {
+    .b-button;
+    .font-size(22);
+    .l-relative;
+    .ty-uppercase;
+    color: @brand-primary;
+    background-color: @colour-white;
+    padding: 2% 10%;
+
+    @media (max-width: @break-point-mobile) {
+        width: 100%;
+    }
+
+    &[disabled] {
+        background-color: @colour-grey-nobel;
+        cursor: not-allowed;
+    }
+}
+
+.b-icon {
+    .u-cursor-pointer;
+
+    svghelper {
+        position: relative;
+
+        .i-icon {
+            position: relative;
+        }
+    }
+}

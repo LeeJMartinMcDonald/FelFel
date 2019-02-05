@@ -1,0 +1,50 @@
+﻿/* Typography - ty-typography - generic commonly used font styles */
+.ty-bold {
+  font-weight: bold;
+}
+.ty-normal {
+  font-weight: normal;
+}
+.ty-center {
+  text-align: center;
+}
+.ty-left {
+  text-align: left;
+}
+.ty-right {
+  text-align: right;
+}
+.ty-lowercase {
+  text-transform: lowercase;
+}
+.ty-uppercase {
+  text-transform: uppercase;
+}
+.ty-weight-normal {
+  font-weight: normal;
+}
+.ty-weight-bold {
+  font-weight: bold;
+}
+.ty-pt-sans-narrow {
+  font-family: "PT Sans Narrow";
+  font-weight: 400;
+}
+.ty-heading-primary {
+  font-size: 36px;
+  font-size: 2.25rem;
+  text-align: center;
+  font-family: "PT Sans Narrow";
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #222;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.ty-mandatory {
+  font-size: 15px;
+  font-size: 0.9375rem;
+}
+.ty-error {
+  color: #D11923;
+}

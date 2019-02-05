@@ -1,0 +1,86 @@
+﻿[
+  {
+    "outputFile": "wwwroot/Styles/1_settings.css",
+    "inputFile": "wwwroot/Styles/1_settings.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/7_c-header.css",
+    "inputFile": "wwwroot/Styles/7_c-header.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/6_base.css",
+    "inputFile": "wwwroot/Styles/6_base.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/2_tools.css",
+    "inputFile": "wwwroot/Styles/2_tools.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/8_u-utilities.css",
+    "inputFile": "wwwroot/Styles/8_u-utilities.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/8_t-templates.css",
+    "inputFile": "wwwroot/Styles/8_t-templates.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/8_ts-template-section.css",
+    "inputFile": "wwwroot/Styles/8_ts-template-section.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/8_external.css",
+    "inputFile": "wwwroot/Styles/8_external.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/7_c-menu.css",
+    "inputFile": "wwwroot/Styles/7_c-menu.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/7_c-footer.css",
+    "inputFile": "wwwroot/Styles/7_c-footer.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/5_f-forms.css",
+    "inputFile": "wwwroot/Styles/5_f-forms.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/5_br-borders.css",
+    "inputFile": "wwwroot/Styles/5_br-borders.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/5_bg-backgrounds.css",
+    "inputFile": "wwwroot/Styles/5_bg-backgrounds.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/5_b-buttons.css",
+    "inputFile": "wwwroot/Styles/5_b-buttons.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/4_ty-typography.css",
+    "inputFile": "wwwroot/Styles/4_ty-typography.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/4_l-layouts.css",
+    "inputFile": "wwwroot/Styles/4_l-layouts.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/4_lf-layout-flex.css",
+    "inputFile": "wwwroot/Styles/4_lf-layout-flex.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/4_i-icons.css",
+    "inputFile": "wwwroot/Styles/4_i-icons.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/3_resets.css",
+    "inputFile": "wwwroot/Styles/3_resets.less"
+  },
+  {
+    "outputFile": "wwwroot/Styles/2_tools-flex-mixins.css",
+    "inputFile": "wwwroot/Styles/2_tools-flex-mixins.less"
+  },
+  {
+    "outputFile": "wwwroot/styles/7_c-components.css",
+    "inputFile": "wwwroot/styles/7_c-components.less"
+  }
+]

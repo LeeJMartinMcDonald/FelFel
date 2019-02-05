@@ -1,0 +1,221 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+@import (reference) "2_tools-flex-mixins.less";
+
+/* Layouts - lf-layoutname - generic commonly used flex layout components */
+
+// flex layout type
+.lf-row {
+    .mixin-display-flex();
+    .mixin-flex-direction(row);
+    .mixin-flex-wrap(wrap);
+}
+
+
+.lf-col {
+    .mixin-display-flex();
+    .mixin-flex-direction(column);
+    .mixin-flex-wrap(wrap);
+}
+
+.lf-col-m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-display-flex();
+        .mixin-flex-direction(column);
+        .mixin-flex-wrap(wrap);
+    }
+}
+
+.lf-row-m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-display-flex();
+        .mixin-flex-direction(row);
+        .mixin-flex-wrap(wrap);
+    }
+}
+
+// flex wrap
+.lf-nowrap {
+    .mixin-flex-wrap(nowrap)
+}
+
+// flex alignment
+.lf-align-center {
+    .mixin-align-content(center);
+}
+
+.lf-align-end {
+    .mixin-align-content(end);
+}
+
+.lf-align-self-center {
+    .mixin-align-self(center);
+}
+
+.lf-align-flex-end {
+    .mixin-align-content(flex-end);
+}
+
+.lf-align-items-center {
+    .mixin-align-items(center);
+}
+
+.lf-align-items-flex-end {
+    .mixin-align-items(flex-end);
+}
+
+.lf-justify-center {
+    .mixin-justify-content(center);
+}
+
+.lf-justify-right {
+    .mixin-justify-content(right);
+}
+
+.lf-justify-flex-end {
+    .mixin-justify-content(flex-end);
+}
+
+.lf-space-between {
+    .mixin-justify-content(space-between);
+}
+
+.lf-space-around {
+    .mixin-justify-content(space-around);
+}
+
+// flex alignments mobile
+.lf-justify-center-m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-justify-content(center);
+    }
+}
+
+.lf-justify-flex-end-m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-justify-content(flex-end);
+    }
+}
+
+.lf-space-around-m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-justify-content(space-around);
+    }
+}
+
+// flex widths
+.lf-1x1 {
+    .mixin-flex(0 0 100%);
+    max-width:100%;
+}
+
+.lf-1x2 {
+    .mixin-flex(0 0 100/2%);
+    max-width: 100/2%;
+}
+
+.lf-1x4 {
+    .mixin-flex(0 0 100/4%);
+    max-width: 100/4%;
+}
+
+.lf-3x4 {
+    .mixin-flex(0 0 100/4 * 3%);
+    max-width: 100/4 * 3%;
+}
+
+.lf-1x3 {
+    .mixin-flex(0 0 100/3%);
+    max-width: 100/3%;
+}
+
+.lf-2x3 {
+    .mixin-flex(0 0 100/3 * 2%);
+    max-width: 100/3 * 2%;
+}
+
+// flex widths - tablet
+.lf-1x1t {
+    @media (max-width: @break-point-tablet) {
+        .mixin-flex(0 0 100%);
+        max-width: 100%;
+    }
+}
+
+.lf-1x2t {
+    @media (max-width: @break-point-tablet) {
+        .mixin-flex(0 0 100/2%);
+        max-width: 100/2%;
+    }
+}
+
+.lf-1x4t {
+    @media (max-width: @break-point-tablet) {
+        .mixin-flex(0 0 100/4%);
+        max-width: 100/4%;
+    }
+}
+
+.lf-3x4t {
+    @media (max-width: @break-point-tablet) {
+        .mixin-flex(0 0 100/4 * 3%);
+        max-width: 100/4 * 3%;
+    }
+}
+
+.lf-1x3t {
+    @media (max-width: @break-point-tablet) {
+        .mixin-flex(0 0 100/3%);
+        max-width: 100/3%;
+    }
+}
+
+.lf-2x3t {
+    @media (max-width: @break-point-tablet) {
+        .mixin-flex(0 0 100/3 * 2%);
+        max-width: 100/3 * 2%;
+    }
+}
+
+// flex widths - mobile
+.lf-1x1m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-flex(0 0 100%);
+        max-width: 100%;
+    }
+}
+
+.lf-1x2m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-flex(0 0 100/2%);
+        max-width: 100/2%;
+    }
+}
+
+.lf-1x4m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-flex(0 0 100/4%);
+        max-width: 100/4%;
+    }
+}
+
+.lf-3x4m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-flex(0 0 100/4 * 3%);
+        max-width: 100/4 * 3%;
+    }
+}
+
+.lf-1x3m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-flex(0 0 100/3%);
+        max-width: 100/3%;
+    }
+}
+
+.lf-2x3m {
+    @media (max-width: @break-point-mobile) {
+        .mixin-flex(0 0 100/3 * 2%);
+        max-width: 100/3 * 2%;
+    }
+}

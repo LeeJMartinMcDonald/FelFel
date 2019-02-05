@@ -1,0 +1,35 @@
+﻿@import (reference) "1_settings.less";
+/* Global mixins - available tools, public mixins, helper functions */
+
+// Font sizing
+.font-size(@sizeValueInPixels) {
+    @baseSize: unit(@body-font-size) / 6.25; // work out number base (e.g. base 10, base 16)
+    @remValue: @sizeValueInPixels / @baseSize;
+    font-size: ~"@{sizeValueInPixels}px"; // fallback for IE8
+    font-size: ~"@{remValue}rem";
+}
+
+// Line height
+.line-height(@sizeValueInPixels) {
+    @baseSize: unit(@body-font-size) / 6.25; // work out number base (e.g. base 10, base 16)
+    @remValue: @sizeValueInPixels / @baseSize;
+    line-height: ~"@{sizeValueInPixels}px"; // fallback for IE8
+    line-height: ~"@{remValue}rem";
+}
+
+// Transforms
+.transform(@transformType){
+    -ms-transform: @transformType;
+    -moz-transform: @transformType;
+    -o-transform: @transformType;
+    -webkit-transform: @transformType;
+    transform: @transformType;
+}
+
+// Transitions
+.transition(@transitionProperty, @transitionTimingFunction, @transitionDuration){
+    -moz-transition: @transitionProperty @transitionTimingFunction @transitionDuration;
+    -o-transition: @transitionProperty @transitionTimingFunction @transitionDuration;
+    -webkit-transition: @transitionProperty @transitionTimingFunction @transitionDuration;
+    transition: @transitionProperty @transitionTimingFunction @transitionDuration;
+}

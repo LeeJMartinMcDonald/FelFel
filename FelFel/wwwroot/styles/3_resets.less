@@ -1,0 +1,37 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+
+/* Ground-zero styles - low specificity, far-reaching, normalize, rests */
+
+* {
+    box-sizing: border-box;
+    outline: medium none;
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+input, select, textarea, button {
+    background: none;
+    background-color: @colour-white;
+    border: none 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    outline: none;
+    padding: 0;
+
+    // remove chrome yellow auto fill background
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px @colour-white inset;
+    }
+}
+
+main {
+    display: block;
+}

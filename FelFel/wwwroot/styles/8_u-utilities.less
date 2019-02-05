@@ -1,0 +1,91 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+
+/* Utiltiies - u-utilityname - generic commonly used components */
+
+.u-cursor-pointer {
+    cursor: pointer;
+}
+
+.u-embed-responsive {
+    overflow: hidden;
+    position: relative;
+}
+
+.u-embed-responsive--16x9 {
+    padding-bottom: 56.25%;
+}
+
+.u-embed-responsive-4x3 {
+    padding-bottom: 75%;
+}
+
+.u-embed-responsive__item {
+    border: 0 none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.u-hidden {
+    display: none;
+}
+
+.u-hidden-d {
+    @media (min-width: @break-point-tablet) {
+        display: none;
+    }
+}
+
+.u-hidden-t {
+    @media (max-width: @break-point-tablet) {
+        display: none;
+    }
+}
+
+.u-hidden-m {
+    @media (max-width: @break-point-mobile) {
+        display: none;
+    }
+}
+
+.u-hide-offscreen {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
+
+.u-required {
+    color: @colour-required;
+}
+
+.u-required--before {
+    &:before {
+        .font-size(13);
+        padding-right: 5px;
+        vertical-align: super;
+        color: @colour-required;
+        content: "*";
+    }
+}
+
+.u-required--after {
+    &:after {
+        .font-size(13);
+        padding-left: 5px;
+        vertical-align: super;
+        color: @colour-required;
+        content: "*";
+    }
+}
+
+.u-reset-list {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+}

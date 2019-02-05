@@ -1,0 +1,71 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+@import (reference) "4_i-icons.less";
+@import (reference) "4_lf-layout-flex.less";
+@import (reference) "4_l-layouts.less";
+@import (reference) "4_ty-typography.less";
+@import (reference) "8_u-utilities.less";
+
+/* Unclassed HTML elements, H1-H6, basic links, lists, etc */
+
+html {
+    color: @body-font-colour;
+    font-size: @body-font-size;
+
+    @media (max-width: @break-point-tablet) {
+        font-size: 90%;
+    }
+
+    @media (max-width: @break-point-mobile) {
+        font-size: 85%;
+    }
+
+    font-family: @body-font-face;
+}
+
+main {
+    .mixin-flex(1 0 0);
+}
+
+img {
+    max-width: 100%;
+}
+
+h1 {
+    .font-size(@h1-font-size);
+    margin: @heading-margin-top 0 @heading-margin-bottom;
+}
+
+h2 {
+    .font-size(@h2-font-size);
+    margin: @heading-margin-top 0 @heading-margin-bottom;
+}
+
+h3 {
+    .font-size(@h3-font-size);
+    margin: @heading-margin-top 0 @heading-margin-bottom;
+}
+
+h4 {
+    .font-size(@h4-font-size);
+    margin: @heading-margin-top 0 @heading-margin-bottom;
+}
+
+h5 {
+    .font-size(@h5-font-size);
+    margin: @heading-margin-top 0 @heading-margin-bottom;
+}
+
+h6 {
+    .font-size(@h6-font-size);
+    margin: @heading-margin-top 0 @heading-margin-bottom;
+}
+
+p {
+    .font-size(@p-font-size);
+    margin: @paragraph-margin-top 0 @paragraph-margin-bottom;
+}
+
+a {
+    color: @brand-primary;
+}

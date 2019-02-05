@@ -1,0 +1,34 @@
+﻿/* Ground-zero styles - low specificity, far-reaching, normalize, rests */
+* {
+  box-sizing: border-box;
+  outline: medium none;
+  -webkit-text-size-adjust: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea,
+button {
+  background: none;
+  background-color: #FFF;
+  border: none 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+input:-webkit-autofill,
+select:-webkit-autofill,
+textarea:-webkit-autofill,
+button:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
+}
+main {
+  display: block;
+}

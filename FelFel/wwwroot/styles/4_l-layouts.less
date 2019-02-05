@@ -1,0 +1,112 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+
+/* Layouts - l-layoutname - generic commonly used layout components */
+
+// positioning
+.l-relative {
+    position: relative;
+}
+
+.l-absolute {
+    position: absolute;
+}
+
+// display
+.l-block {
+    display: block;
+}
+
+.l-inline {
+    display: inline;
+}
+
+// widths
+.l-w-100 {
+    margin: auto;
+    width: 100%;
+}
+
+.l-w-90 {
+    margin: auto;
+    width: 90%;
+}
+
+.l-w-80 {
+    margin: auto;
+    width: 80%;
+}
+
+.l-w-70 {
+    margin: auto;
+    width: 70%;
+}
+
+.l-w-100t {
+    @media (max-width: @break-point-tablet) {
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.l-w-90t {
+    @media (max-width: @break-point-tablet) {
+        margin: auto;
+        width: 90%;
+    }
+}
+
+.l-w-80t {
+    @media (max-width: @break-point-tablet) {
+        margin: auto;
+        width: 80%;
+    }
+}
+
+.l-w-70t {
+    @media (max-width: @break-point-tablet) {
+        margin: auto;
+        width: 70%;
+    }
+}
+
+.l-w-100m {
+    @media (max-width: @break-point-mobile) {
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.l-w-90m {
+    @media (max-width: @break-point-mobile) {
+        margin: auto;
+        width: 90%;
+    }
+}
+
+.l-w-80m {
+    @media (max-width: @break-point-mobile) {
+        margin: auto;
+        width: 80%;
+    }
+}
+
+.l-w-70m {
+    @media (max-width: @break-point-mobile) {
+        margin: auto;
+        width: 70%;
+    }
+}
+
+// max widths
+.l-wm-1600 {
+    max-width: 1600px;
+}
+
+.l-wm-950 {
+    max-width: 950px;
+}
+
+.l-h-100{
+    height:100%;
+}

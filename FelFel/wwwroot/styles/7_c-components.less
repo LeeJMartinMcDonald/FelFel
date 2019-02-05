@@ -1,0 +1,44 @@
+﻿@import (reference) "1_settings.less";
+@import (reference) "2_tools.less";
+@import (reference) "4_i-icons.less";
+@import (reference) "4_lf-layout-flex.less";
+@import (reference) "4_l-layouts.less";
+@import (reference) "4_ty-typography.less";
+@import (reference) "8_u-utilities.less";
+@import (reference) "5_b-buttons.less";
+@import (reference) "5_bg-backgrounds.less";
+@import (reference) "5_br-borders.less";
+@import (reference) "5_f-forms.less";
+
+/* Components - c-componentname - components, chunks of UI */
+
+.c-app {
+    min-height: 100vh;
+}
+
+.c-alert {
+    background: @colour-white;
+    border-radius: 5px;
+    box-shadow: 0 0 15px @colour-grey-nobel;
+    bottom: 30px;
+    padding: 15px 20px 10px;
+    position: fixed;
+    right: 8%;
+    width: 450px;
+    z-index: 1;
+}
+
+.c-alert__text {
+    color: @colour-black;
+    padding-left: 20px;
+}
+
+.c-alert--hidden {
+    bottom: -100vh;
+    transition: all ease-in-out 2s;
+}
+
+.c-alert--visible {
+    bottom: 30px;
+    transition: all ease-in-out 2s;
+}
