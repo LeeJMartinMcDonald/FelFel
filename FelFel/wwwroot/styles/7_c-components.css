@@ -42,3 +42,6 @@
   bottom: 30px;
   transition: all ease-in-out 2s;
 }
+.c-content-container {
+  padding: 2%;
+}

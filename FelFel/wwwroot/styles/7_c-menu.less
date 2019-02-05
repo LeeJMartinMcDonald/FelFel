@@ -12,6 +12,21 @@
 
 /* Components - c-menu - menu specific styles */
 
-.c-menu {
+.c-menu__item-link{
+    padding: 10%;
 
+    &:hover{
+        background: @colour-blue-pacific;
+        color: @colour-white;
+    }
+}
+
+.c-menu__item-text{
+    .font-size(25);
+}
+
+.c-menu__item--active {
+    background: @colour-blue-pacific;
+    color: @colour-white;
+    font-weight: bold;
 }

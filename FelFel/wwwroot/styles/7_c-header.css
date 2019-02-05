@@ -18,6 +18,7 @@
 }/* Components - c-header - header specific styles */
 .c-header {
   background-color: #FFF;
+  margin-bottom: 40px;
   position: sticky;
   top: 0;
   z-index: 5;

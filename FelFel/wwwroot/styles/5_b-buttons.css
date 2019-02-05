@@ -52,7 +52,7 @@
   position: relative;
   text-transform: uppercase;
   color: #FFF;
-  background-color: #0095D0;
+  background-color: #4559B0;
   padding: 2% 10%;
 }
 .b-primary:hover {
@@ -85,7 +85,7 @@
   font-size: 1.375rem;
   position: relative;
   text-transform: uppercase;
-  color: #0095D0;
+  color: #4559B0;
   background-color: #FFF;
   padding: 2% 10%;
 }
