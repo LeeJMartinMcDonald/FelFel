@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Services;
 using Data.Models;
+using Data.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +31,13 @@ namespace FelFel
                 options.UseSqlServer(connectionString);
             });
             ProjectEntities.ConnectionString = connectionString;
+
+            services.AddScoped<IBatchService, BatchService>();
+
+            services.AddScoped<IBatchRepository, BatchRepository>();
+
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc();
         }
