@@ -1,0 +1,16 @@
+<div class="c-alert" 
+    [ngClass]="{
+        'c-alert--success': message !== undefined && message.type === 'success',
+        'c-alert--danger': message !== undefined && message.type === 'error',
+        'c-alert--visible': message !== undefined,
+        'c-alert--hidden': message === undefined
+     }">
+    <h2 class="c-alert__heading">Alert</h2>
+    <div class="lf-row">
+        <button type="button" (click)="closeAlert()" class="b-icon"></button>
+
+        <div class="lf-2x3 lf-row lf-align-items-center">
+            <p class="c-alert__text">{{message?.text}}</p>
+        </div>
+    </div>
+</div>

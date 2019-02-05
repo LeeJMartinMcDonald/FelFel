@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Services;
 using Data.Models;
 using Data.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,12 +30,14 @@ namespace FelFel
             });
             ProjectEntities.ConnectionString = connectionString;
 
-            services.AddScoped<IBatchService, BatchService>();
-
+            // Repositories
             services.AddScoped<IBatchRepository, BatchRepository>();
 
-
+            // Helpers
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Services
+            services.AddScoped<IBatchService, BatchService>();
 
             services.AddMvc();
         }
@@ -63,6 +63,12 @@ namespace FelFel
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+
+                // for angular development
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
             }
             else
             {
