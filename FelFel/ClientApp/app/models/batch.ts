@@ -3,4 +3,5 @@ export class Batch {
     checkedInDate: Date;
     expirationDate: Date;
     expiringTime: number;
+    quantity: number;
 }

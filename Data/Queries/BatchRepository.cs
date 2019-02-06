@@ -15,6 +15,7 @@ namespace Data.Queries
         public async Task<IEnumerable<Batch>> Get()
         {
             return await _context.Batches
+                .Include(x => x.BatchItems)
                 .ToListAsync()
                 ;
         }

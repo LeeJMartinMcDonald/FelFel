@@ -9,19 +9,22 @@ namespace Application.Models
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 
-        [DataMember(Name = "CheckedInDate")]
+        [DataMember(Name = "checkedInDate")]
         public DateTime CheckedInDate { get; set; }
 
-        [DataMember(Name = "ExpirationDate")]
+        [DataMember(Name = "expirationDate")]
         public DateTime ExpirationDate { get; set; }
 
-        [DataMember(Name = "ExpiringTime")]
+        [DataMember(Name = "expiringTime")]
         public int ExpiringTime { get; set; }
 
-        [DataMember(Name = "OrderId")]
+        [DataMember(Name = "orderId")]
         public int OrderId { get; set; }
 
-        [DataMember(Name = "ProductId")]
+        [DataMember(Name = "productId")]
         public int ProductId { get; set; }
+
+        [DataMember(Name = "quantity")]
+        public int Quantity { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Models;
 using Data.Queries;
@@ -45,9 +46,17 @@ namespace Application.Services
             _unitOfWork.BatchRepository.Add(batch);
         }
 
-        public async Task<IEnumerable<Entities.Batch>> Get()
+        public async Task<IEnumerable<Batch>> Get()
         {
-            return await _unitOfWork.BatchRepository.Get();
+            var batches = await _unitOfWork.BatchRepository.Get();
+            var result = batches.Select(x => new Batch {
+                CheckedInDate = x.CheckedInDate,
+                ExpirationDate = x.ExpirationDate,
+                ExpiringTime = x.ExpiringTime,
+                Quantity = x.BatchItems.Sum(bi => bi.Quantity)
+            });
+
+            return result;
         }
     }
 }

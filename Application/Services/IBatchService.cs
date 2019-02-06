@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Application.Models;
 
@@ -11,6 +10,6 @@ namespace Application.Services
 
         void AddNewBatch(BatchNew model);
 
-        Task<IEnumerable<Entities.Batch>> Get();
+        Task<IEnumerable<Batch>> Get();
     }
 }

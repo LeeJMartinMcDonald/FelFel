@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "74c0ddc70e265951eee2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "68db35cf27b7828003c3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -63447,7 +63447,7 @@ var LoadingStatus;
 /* 775 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Batches</h2>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Checked in date\r\n        </th>\r\n        <th>\r\n            Expiration date\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.checkedInDate | date:'dd/MM/yyy HH:mm'}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyy HH:mm'}}</td>\r\n    </tr>\r\n</table>";
+module.exports = "<h2>Batches</h2>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Checked in date\r\n        </th>\r\n        <th>\r\n            Expiration date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.checkedInDate | date:'dd/MM/yyy HH:mm'}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyy HH:mm'}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n    </tr>\r\n</table>";
 
 /***/ }),
 /* 776 */
