@@ -27,6 +27,7 @@ namespace Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // constraints to go here
         }
 
         public virtual DbSet<Batch> Batches { get; set; }
