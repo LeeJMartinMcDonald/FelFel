@@ -1,15 +1,22 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Data.Models;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Queries
 {
     public class BatchRepository : Repo<Batch>, IBatchRepository
     {
-        private readonly IBatchRepository _batchRepository;
-
         public BatchRepository(ProjectEntities context) : base(context)
         {
+        }
+
+        public async Task<IEnumerable<Batch>> Get()
+        {
+            return await _context.Batches
+                .ToListAsync()
+                ;
         }
     }
 }

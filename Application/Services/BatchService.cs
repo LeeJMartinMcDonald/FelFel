@@ -1,6 +1,6 @@
-﻿using Application.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Data.Queries;
-using Entities;
 
 namespace Application.Services
 {
@@ -15,15 +15,20 @@ namespace Application.Services
 
         public void Add(Models.Batch model)
         {
+            // idealy use an auto-mapper
             var batch = new Entities.Batch
             {
                 ExpirationDate = model.ExpirationDate,
                 ExpiringTime = model.ExpiringTime,
                 CheckedInDate = model.CheckedInDate,
-                
             };
 
             _unitOfWork.BatchRepository.Add(batch);
+        }
+
+        public async Task<IEnumerable<Entities.Batch>> Get()
+        {
+            return await _unitOfWork.BatchRepository.Get();
         }
     }
 }
