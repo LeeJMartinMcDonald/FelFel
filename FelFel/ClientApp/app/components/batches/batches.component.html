@@ -1,12 +1,20 @@
 <h2>Batches</h2>
 
-<table>
+<table class="tb-data-table">
     <tr>
         <th>
             ID
         </th>
+        <th>
+            Checked in date
+        </th>
+        <th>
+            Expiration date
+        </th>
     </tr>
     <tr *ngFor="let batch of batches; let index = index;" class="br-b-1">
         <td>{{batch.id}}</td>
+        <td>{{batch.checkedInDate | date:'dd/MM/yyy HH:mm'}}</td>
+        <td>{{batch.expirationDate | date:'dd/MM/yyy HH:mm'}}</td>
     </tr>
 </table>

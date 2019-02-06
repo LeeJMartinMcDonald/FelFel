@@ -82,5 +82,9 @@
   {
     "outputFile": "wwwroot/styles/7_c-components.css",
     "inputFile": "wwwroot/styles/7_c-components.less"
+  },
+  {
+    "outputFile": "wwwroot/styles/5_tb-tables.css",
+    "inputFile": "wwwroot/styles/5_tb-tables.less"
   }
 ]

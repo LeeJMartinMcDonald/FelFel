@@ -1,0 +1,29 @@
+﻿@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 1024px) {
+}@media (max-width: 1024px) {
+}@media (max-width: 1024px) {
+}@media (max-width: 1024px) {
+}@media (max-width: 1024px) {
+}@media (max-width: 1024px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}@media (max-width: 750px) {
+}/* Backgrounds - bg-background - generic commonly used background styles */
+.tb-data-table td {
+  padding: 2%;
+  min-width: 150px;
+}
+.tb-data-table td:first-child {
+  min-width: 30px;
+}
+.tb-data-table th {
+  padding: 2%;
+  text-align: left;
+}
