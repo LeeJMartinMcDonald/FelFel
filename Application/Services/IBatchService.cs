@@ -11,5 +11,7 @@ namespace Application.Services
         void AddNewBatch(BatchNew model);
 
         Task<IEnumerable<Batch>> Get();
+
+        Task<IEnumerable<BatchItem>> GetBatchItems(int batchId);
     }
 }

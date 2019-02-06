@@ -8,15 +8,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import { BatchService } from "../../services/batch.service";
 var BatchHistoryComponent = /** @class */ (function () {
-    function BatchHistoryComponent(batchService) {
+    function BatchHistoryComponent(batchService, route) {
         this.batchService = batchService;
+        this.route = route;
     }
     BatchHistoryComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.batchService.getBatches().subscribe(function (batches) {
-            _this.batches = batches;
+        this.route.params.subscribe(function (params) {
+            _this.batchId = +params['id'];
+        });
+        this.batchService.getBatchItems(this.batchId).subscribe(function (batchItems) {
+            _this.batchItems = batchItems;
         });
     };
     BatchHistoryComponent = __decorate([
@@ -24,7 +29,8 @@ var BatchHistoryComponent = /** @class */ (function () {
             selector: "batch.history",
             template: require("./batch.history.component.html")
         }),
-        __metadata("design:paramtypes", [BatchService])
+        __metadata("design:paramtypes", [BatchService,
+            ActivatedRoute])
     ], BatchHistoryComponent);
     return BatchHistoryComponent;
 }());

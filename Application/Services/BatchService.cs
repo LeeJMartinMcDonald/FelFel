@@ -59,5 +59,17 @@ namespace Application.Services
 
             return result;
         }
+
+        public async Task<IEnumerable<BatchItem>> GetBatchItems(int batchId)
+        {
+            var batches = await _unitOfWork.BatchItemRepository.Get(batchId);
+            var result = batches.Select(x => new BatchItem
+            {
+                Id = x.Id,
+                Quantity = x.Quantity
+            });
+
+            return result;
+        }
     }
 }

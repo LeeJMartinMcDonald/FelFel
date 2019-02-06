@@ -32,6 +32,7 @@ namespace FelFel
 
             // Repositories
             services.AddScoped<IBatchRepository, BatchRepository>();
+            services.AddScoped<IBatchItemRepository, BatchItemRepository>();
 
             // Helpers
             services.AddScoped<IUnitOfWork, UnitOfWork>();

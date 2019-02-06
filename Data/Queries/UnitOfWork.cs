@@ -10,14 +10,17 @@ namespace Data.Queries
 
         public UnitOfWork(
             ProjectEntities context,
-            IBatchRepository batchRepository
+            IBatchRepository batchRepository,
+            IBatchItemRepository batchItemRepository
         )
         {
             _context = context;
             BatchRepository = batchRepository;
+            BatchItemRepository = batchItemRepository;
         }
 
         public IBatchRepository BatchRepository { get; }
+        public IBatchItemRepository BatchItemRepository { get; }
 
         public int Save()
         {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 
-import { Batch } from "../../models/batch";
+import { BatchItem } from "../../models/batch.item";
 
 import { BatchService } from "../../services/batch.service";
 
@@ -10,16 +11,22 @@ import { BatchService } from "../../services/batch.service";
 })
 
 export class BatchHistoryComponent implements OnInit{
-    batches: Batch[];
+    batchItems: BatchItem[];
+    batchId: number;
 
     constructor(
-        private readonly batchService: BatchService
+        private readonly batchService: BatchService,
+        private route: ActivatedRoute
     ) {
     }
 
     ngOnInit() {
-        this.batchService.getBatches().subscribe(batches => {
-            this.batches = batches;
+        this.route.params.subscribe(params => {
+            this.batchId = +params['id'];
+        });
+
+        this.batchService.getBatchItems(this.batchId).subscribe(batchItems => {
+            this.batchItems = batchItems;
         });
     }
 }

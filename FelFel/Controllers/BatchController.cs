@@ -22,17 +22,17 @@ namespace FelFel.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Add([FromBody]Batch model)
+        [HttpPut("[action]")]
+        public async Task<IActionResult> AddNewBatch([FromBody]BatchNew newBatch)
         {
-            _batchService.Add(model);
+            _batchService.AddNewBatch(newBatch);
             var result = await _unitOfWork.SaveAsync();
             if (result > 0)
             {
                 return Ok();
             }
 
-            return StatusCode(500, "Unable to add batch.");
+            return StatusCode(500, "Unable to add new batch.");
         }
 
         [HttpGet("[action]")]
@@ -47,17 +47,16 @@ namespace FelFel.Controllers
             return StatusCode(500, "Unable to retrieve batches.");
         }
 
-        [HttpPut("[action]")]
-        public async Task<IActionResult> AddNewBatch([FromBody]BatchNew newBatch)
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetBatchItems(int id)
         {
-            _batchService.AddNewBatch(newBatch);
-            var result = await _unitOfWork.SaveAsync();
-            if (result > 0)
+            var batchItems = await _batchService.GetBatchItems(id);
+            if (batchItems != null)
             {
-                return Ok();
+                return Ok(batchItems);
             }
 
-            return StatusCode(500, "Unable to add new batch.");
+            return StatusCode(500, $"Unable to retrieve batch items for batch: {id}.");
         }
     }
 }

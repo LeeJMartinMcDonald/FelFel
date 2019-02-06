@@ -11,6 +11,7 @@ import { LoadingStatus } from "../enums/loading.status";
 
 import { Batch } from "../models/batch";
 import { BatchNew } from "../models/batch.new";
+import { BatchItem } from "../models/batch.item";
 
 import { AlertService } from "../services/alert.service";
 import { BaseService } from "../services/base.service";
@@ -22,6 +23,7 @@ const httpOptions = {
 @Injectable()
 export class BatchService extends BaseService {
     private batchesSubject = new BehaviorSubject<Batch[]>(new Array<Batch>());
+    private batchItemsSubject = new BehaviorSubject<BatchItem[]>(new Array<BatchItem>());
 
     constructor(
         private readonly appConfig: AppConfig,
@@ -48,6 +50,25 @@ export class BatchService extends BaseService {
             ),
             catchError(this.handleError<any>(`GetBatches`))
         );
+    }
+
+    getBatchItems(batchId: number): Observable<BatchItem[]> {
+        this.loadBatchItems(batchId).subscribe();
+
+        return this.batchItemsSubject.asObservable();
+    }
+
+    loadBatchItems(batchId: number): Observable<BatchItem[]> {
+        return this.httpClient.get<Batch[]>(
+            `${this.appConfig.apiBatchUrl}GetBatchItems/${batchId}`,
+            httpOptions)
+            .pipe(
+            tap(_ => {
+                this.batchItemsSubject.next(_);
+            }
+            ),
+            catchError(this.handleError<any>(`GetBatchItems/${batchId}`))
+            );
     }
 
     addNewBatch(model: BatchNew): Observable<any> {
