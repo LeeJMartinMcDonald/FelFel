@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Application.Services;
 using Application.Models;
+using Application.Services;
 using Data.Queries;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FelFel.Controllers
 {
@@ -31,18 +32,19 @@ namespace FelFel.Controllers
                 return Ok();
             }
 
-            return BadRequest("unable to be created: ");
+            return StatusCode(500, "Unable to add batch.");
+        }
 
-            //var result = await PreferenceCentreManager(subSiteId).UpdateVehicleDetails(UserId(subSiteId), vehicle);
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetBatches()
+        {
+            var batches = await _batchService.Get();
+            if (batches != null)
+            {
+                return Ok(batches);
+            }
 
-            //if (result.StatusType == PreferenceCentreResponseStatus.Success)
-            //{
-            //    return Ok();
-            //}
-            //else
-            //{
-            //    return NotFound();
-            //}
+            return StatusCode(500, "Unable to retrieve batches.");
         }
     }
 }
