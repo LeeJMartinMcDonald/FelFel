@@ -9,6 +9,8 @@ namespace Application.Services
     {
         void Add(Batch model);
 
-        Task <IEnumerable<Entities.Batch>> Get();
+        void AddNewBatch(BatchNew model);
+
+        Task<IEnumerable<Entities.Batch>> Get();
     }
 }

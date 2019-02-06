@@ -21,6 +21,7 @@ import { AppConfig } from "./app.config";
 import { AlertComponent } from "./components/alert/alert.component";
 import { AppComponent } from "./components/app/app.component";
 import { BatchesComponent } from "./components/batches/batches.component";
+import { BatchAddComponent } from "./components/batch.add/batch.add.component";
 import { SiteFooterComponent } from "./components/site.footer/site.footer.component";
 import { SiteHeaderComponent } from "./components/site.header/site.header.component";
 import { SiteMenuComponent } from "./components/site.menu/site.menu.component";
@@ -37,6 +38,7 @@ var AppModuleShared = /** @class */ (function () {
                 AlertComponent,
                 AppComponent,
                 BatchesComponent,
+                BatchAddComponent,
                 SiteFooterComponent,
                 SiteHeaderComponent,
                 SiteMenuComponent,
@@ -57,6 +59,7 @@ var AppModuleShared = /** @class */ (function () {
                     { path: "", redirectTo: "welcome", pathMatch: "full" },
                     { path: "welcome", component: WelcomeComponent },
                     { path: "batches", component: BatchesComponent },
+                    { path: "batch-add", component: BatchAddComponent },
                     { path: "**", redirectTo: "welcome" }
                 ], {
                     useHash: true

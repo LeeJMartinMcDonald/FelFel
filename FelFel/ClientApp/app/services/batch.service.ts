@@ -10,6 +10,7 @@ import { AppConfig } from "../app.config";
 import { LoadingStatus } from "../enums/loading.status";
 
 import { Batch } from "../models/batch";
+import { BatchNew } from "../models/batch.new";
 
 import { AlertService } from "../services/alert.service";
 import { BaseService } from "../services/base.service";
@@ -21,7 +22,6 @@ const httpOptions = {
 @Injectable()
 export class BatchService extends BaseService {
     private batchesSubject = new BehaviorSubject<Batch[]>(new Array<Batch>());
-    private statusBatches: LoadingStatus = LoadingStatus.Unset;
 
     constructor(
         private readonly appConfig: AppConfig,
@@ -32,10 +32,7 @@ export class BatchService extends BaseService {
     }
 
     getBatches(): Observable<Batch[]> {
-        if (this.statusBatches === LoadingStatus.Unset) {
-            this.statusBatches = LoadingStatus.Loading;
-            this.loadBatches().subscribe();
-        }
+        this.loadBatches().subscribe();
 
         return this.batchesSubject.asObservable();
     }
@@ -50,6 +47,20 @@ export class BatchService extends BaseService {
                 }
             ),
             catchError(this.handleError<any>(`GetBatches`))
+        );
+    }
+
+    addNewBatch(model: BatchNew): Observable<any> {
+        this.logSuccess("Adding a new batch...");
+        return this.httpClient.put<any>(
+            `${this.appConfig.apiBatchUrl}AddNewBatch`,
+            model,
+            httpOptions
+        ).pipe(
+            tap(_ => {
+                this.logSuccess("New batch added");
+            }),
+            catchError(this.handleError<any>("AddNewBatch"))
         );
     }
 }

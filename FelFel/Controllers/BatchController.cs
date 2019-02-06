@@ -46,5 +46,18 @@ namespace FelFel.Controllers
 
             return StatusCode(500, "Unable to retrieve batches.");
         }
+
+        [HttpPut("[action]")]
+        public async Task<IActionResult> AddNewBatch([FromBody]BatchNew newBatch)
+        {
+            _batchService.AddNewBatch(newBatch);
+            var result = await _unitOfWork.SaveAsync();
+            if (result > 0)
+            {
+                return Ok();
+            }
+
+            return StatusCode(500, "Unable to add new batch.");
+        }
     }
 }

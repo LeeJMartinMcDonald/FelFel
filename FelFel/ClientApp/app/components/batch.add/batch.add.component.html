@@ -1,0 +1,23 @@
+<h2>Add new batch</h2>
+
+<form name="batchAddForm" #f="ngForm" novalidate class="f-form f-form--inline">
+    <div class="lf-row">
+        <div class="lf-1x4">
+            <label for="quantity" class="f-label">Quantity</label>
+        </div>
+        <div class="lf-3x3">
+            <input type="text"
+                   class="f-input"
+                   name="quantity"
+                   id="quantity"
+                   required
+                   [placeholder]="Quantity"
+                   [(ngModel)]="batchNew.quantity" />
+        </div>
+        <div class="lf-1x1 lf-row lf-justify-center">
+            <button [type]="button" class="b-icon ty-uppercase ty-heading-link" (click)="save($event)">
+                Add new batch
+            </button>
+        </div>
+    </div>
+</form>
