@@ -1,4 +1,4 @@
 ﻿export class AppConfig {
-    apiUrl: string = "/Api/Batch/";
+    apiBatchUrl: string = "/Api/Batch/";
     webRequestAttempts: number = 10; 
 }

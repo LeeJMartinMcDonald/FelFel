@@ -1,1 +1,12 @@
 <h2>Batches</h2>
+
+<table>
+    <tr>
+        <th>
+            ID
+        </th>
+    </tr>
+    <tr *ngFor="let batch of batches; let index = index;" class="br-b-1">
+        <td>{{batch.id}}</td>
+    </tr>
+</table>

@@ -25,6 +25,7 @@ import { SiteMenuComponent } from "./components/site.menu/site.menu.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 
 import { AlertService } from "./services/alert.service";
+import { BatchService } from "./services/batch.service";
 import { ExternalResourceService } from "./services/external.resource.service";
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ExternalResourceService } from "./services/external.resource.service";
         AppConfig,
 
         AlertService,
+        BatchService,
         ExternalResourceService
     ]
 })
