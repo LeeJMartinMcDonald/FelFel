@@ -18,13 +18,14 @@ export class BatchAddComponent implements OnInit{
     }
 
     ngOnInit() {
-
+        this.batchNew.quantity = 0;
     }
 
     save($event: any) {
         console.log(this.batchNew);
         this.batchService.addNewBatch(this.batchNew).subscribe(result => {
             this.batchNew = new BatchNew();
+            this.batchNew.quantity = 0;
         });
     }
 }

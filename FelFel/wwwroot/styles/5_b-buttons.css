@@ -53,7 +53,6 @@
   text-transform: uppercase;
   color: #FFF;
   background-color: #4559B0;
-  padding: 2% 10%;
 }
 .b-primary:hover {
   -moz-transition: background-color ease-out 0.1s;

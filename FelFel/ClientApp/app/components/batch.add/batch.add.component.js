@@ -16,12 +16,14 @@ var BatchAddComponent = /** @class */ (function () {
         this.batchNew = new BatchNew();
     }
     BatchAddComponent.prototype.ngOnInit = function () {
+        this.batchNew.quantity = 0;
     };
     BatchAddComponent.prototype.save = function ($event) {
         var _this = this;
         console.log(this.batchNew);
         this.batchService.addNewBatch(this.batchNew).subscribe(function (result) {
             _this.batchNew = new BatchNew();
+            _this.batchNew.quantity = 0;
         });
     };
     BatchAddComponent = __decorate([
