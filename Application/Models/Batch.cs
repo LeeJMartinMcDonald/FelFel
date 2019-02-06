@@ -6,7 +6,7 @@ namespace Application.Models
     [DataContract]
     public class Batch
     {
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
 
         [DataMember(Name = "checkedInDate")]
