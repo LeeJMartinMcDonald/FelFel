@@ -21,25 +21,41 @@
 }
 .c-alert {
   background: #FFF;
-  border-radius: 5px;
-  box-shadow: 0 0 15px #999;
-  bottom: 30px;
+  bottom: 0;
   padding: 15px 20px 10px;
   position: fixed;
-  right: 8%;
-  width: 450px;
+  right: 0;
+  width: 25%;
   z-index: 1;
+}
+.c-alert__close {
+  position: absolute;
+  font-size: 22px;
+  font-size: 1.375rem;
+  background: transparent;
+  color: #000;
+  right: 30px;
 }
 .c-alert__text {
   color: #000;
   padding-left: 20px;
 }
+.c-alert--danger {
+  background-color: #f2dede;
+  border: 1px solid #D11923;
+  color: #a94442;
+}
 .c-alert--hidden {
   bottom: -100vh;
   transition: all ease-in-out 2s;
 }
+.c-alert--success {
+  background-color: #d4edda;
+  border: 1px solid #155724;
+  color: #155724;
+}
 .c-alert--visible {
-  bottom: 30px;
+  bottom: 0;
   transition: all ease-in-out 2s;
 }
 .c-content-container {
