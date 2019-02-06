@@ -5,11 +5,10 @@
         'c-alert--visible': message !== undefined,
         'c-alert--hidden': message === undefined
      }">
-    <h2 class="c-alert__heading">Alert</h2>
     <div class="lf-row">
-        <button type="button" (click)="closeAlert()" class="b-icon"></button>
+        <button type="button" (click)="closeAlert()" class="b-icon c-alert__close">X</button>
 
-        <div class="lf-2x3 lf-row lf-align-items-center">
+        <div class="lf-1x1 lf-row lf-align-items-center lf-justify-center">
             <p class="c-alert__text">{{message?.text}}</p>
         </div>
     </div>
