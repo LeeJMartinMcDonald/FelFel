@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\models\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
