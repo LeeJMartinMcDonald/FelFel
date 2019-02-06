@@ -7,7 +7,7 @@ namespace Application.Models
     public class Batch
     {
         [DataMember(Name = "id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [DataMember(Name = "checkedInDate")]
         public DateTime CheckedInDate { get; set; }

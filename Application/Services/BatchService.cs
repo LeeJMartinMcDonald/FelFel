@@ -50,6 +50,7 @@ namespace Application.Services
         {
             var batches = await _unitOfWork.BatchRepository.Get();
             var result = batches.Select(x => new Batch {
+                Id = x.Id,
                 CheckedInDate = x.CheckedInDate,
                 ExpirationDate = x.ExpirationDate,
                 ExpiringTime = x.ExpiringTime,
