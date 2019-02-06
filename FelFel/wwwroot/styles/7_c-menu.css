@@ -28,7 +28,9 @@
   font-size: 1.5625rem;
 }
 .c-menu__item--active {
+  font-weight: bold;
+}
+.c-menu__item--active .c-menu__item-link {
   background: #4559B0;
   color: #FFF;
-  font-weight: bold;
 }
