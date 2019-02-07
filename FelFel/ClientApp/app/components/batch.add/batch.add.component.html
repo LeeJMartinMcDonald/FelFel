@@ -57,6 +57,24 @@
             </div>
         </div>
     </div>
+    <div class="lf-row c-content-spacer">
+        <div class="lf-1x4">
+            <label for="expiringTime" class="f-label">Expiring (days from Expiration date)</label>
+        </div>
+        <div class="lf-3x4">
+            <input type="number"
+                   class="f-input"
+                   name="expiringTime"
+                   [(ngModel)]="batchNew.expiringTime"
+                   #expiringTime="ngModel"
+                   placeholder="Expiring time in days"
+                   min="1"
+                   required />
+            <div *ngIf="expiringTime.invalid">
+                <div *ngIf="expiringTime.errors.required" class="u-required u-required--before">required</div>
+            </div>
+        </div>
+    </div>
     <div class="lf-1x1 lf-row lf-justify-center c-content-spacer">
         <button [type]="button" class="b-icon ty-uppercase b-primary">
             Add new batch
