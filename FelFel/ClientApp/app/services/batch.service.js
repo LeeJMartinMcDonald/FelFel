@@ -111,6 +111,21 @@ var BatchService = /** @class */ (function (_super) {
             _this.batchSubject.next(_);
         }), catchError(this.handleError("GetBatch/" + batchId)));
     };
+    BatchService.prototype.getFreshness = function (batch) {
+        var currentDate = new Date();
+        var expirationDate = new Date(batch.expirationDate);
+        var expiringDate = new Date(expirationDate);
+        expiringDate.setDate(expiringDate.getDate() - batch.expiringTime);
+        if (currentDate >= expirationDate) {
+            return "Expired";
+        }
+        else if (currentDate >= expiringDate) {
+            return "Expiring";
+        }
+        else {
+            return "Fresh";
+        }
+    };
     BatchService = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [AppConfig,

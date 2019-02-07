@@ -20,19 +20,7 @@ var BatchesComponent = /** @class */ (function () {
         });
     };
     BatchesComponent.prototype.getFreshness = function (batch) {
-        var currentDate = new Date();
-        var expirationDate = new Date(batch.expirationDate);
-        var expiringDate = new Date(expirationDate);
-        expiringDate.setDate(expiringDate.getDate() - batch.expiringTime);
-        if (currentDate >= expirationDate) {
-            return "Expired";
-        }
-        else if (currentDate >= expiringDate) {
-            return "Expiring";
-        }
-        else {
-            return "Fresh";
-        }
+        return this.batchService.getFreshness(batch);
     };
     BatchesComponent = __decorate([
         Component({

@@ -8,7 +8,7 @@
 <p>Product: {{product.name}}</p>
 
 <h3>Batches</h3>
-<table class="tb-data-table" *ngIf="batches.length > 1">
+<table class="tb-data-table" *ngIf="batches.length > 0">
     <tr>
         <th>
             ID
@@ -17,12 +17,16 @@
             Expiration Date
         </th>
         <th>
+            Freshness
+        </th>
+        <th>
             Quantity
         </th>
     </tr>
     <tr *ngFor="let batch of batches; let index = index;" class="br-b-1">
         <td>{{batch.id}}</td>
         <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{getFreshness(batch)}}</td>
         <td>{{batch.quantity}}</td>
     </tr>
 </table>

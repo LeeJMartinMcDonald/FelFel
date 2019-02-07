@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8700033022799cc0e504"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1fed22412d6b1cd7a3a0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -4076,6 +4076,21 @@ var BatchService = /** @class */ (function (_super) {
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
             _this.batchSubject.next(_);
         }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("GetBatch/" + batchId)));
+    };
+    BatchService.prototype.getFreshness = function (batch) {
+        var currentDate = new Date();
+        var expirationDate = new Date(batch.expirationDate);
+        var expiringDate = new Date(expirationDate);
+        expiringDate.setDate(expiringDate.getDate() - batch.expiringTime);
+        if (currentDate >= expirationDate) {
+            return "Expired";
+        }
+        else if (currentDate >= expiringDate) {
+            return "Expiring";
+        }
+        else {
+            return "Fresh";
+        }
     };
     BatchService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
@@ -57006,19 +57021,7 @@ var BatchesComponent = /** @class */ (function () {
         });
     };
     BatchesComponent.prototype.getFreshness = function (batch) {
-        var currentDate = new Date();
-        var expirationDate = new Date(batch.expirationDate);
-        var expiringDate = new Date(expirationDate);
-        expiringDate.setDate(expiringDate.getDate() - batch.expiringTime);
-        if (currentDate >= expirationDate) {
-            return "Expired";
-        }
-        else if (currentDate >= expiringDate) {
-            return "Expiring";
-        }
-        else {
-            return "Fresh";
-        }
+        return this.batchService.getFreshness(batch);
     };
     BatchesComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -63989,6 +63992,9 @@ var ProductInventoryByBatch = /** @class */ (function () {
             _this.batches = batches;
         });
     };
+    ProductInventoryByBatch.prototype.getFreshness = function (batch) {
+        return this.batchService.getFreshness(batch);
+    };
     ProductInventoryByBatch = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "product.inventory.by.batch",
@@ -64007,7 +64013,7 @@ var ProductInventoryByBatch = /** @class */ (function () {
 /* 790 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Product inventory by batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/products']\">Back to products</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Product: {{product.name}}</p>\r\n\r\n<h3>Batches</h3>\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 1\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Expiration Date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n    </tr>\r\n</table>\r\n\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
+module.exports = "<h2>Product inventory by batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/products']\">Back to products</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Product: {{product.name}}</p>\r\n\r\n<h3>Batches</h3>\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 0\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Expiration Date\r\n        </th>\r\n        <th>\r\n            Freshness\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{getFreshness(batch)}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n    </tr>\r\n</table>\r\n\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
 
 /***/ }),
 /* 791 */

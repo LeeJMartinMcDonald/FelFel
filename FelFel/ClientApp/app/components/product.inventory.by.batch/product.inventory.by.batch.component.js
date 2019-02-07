@@ -29,6 +29,9 @@ var ProductInventoryByBatch = /** @class */ (function () {
             _this.batches = batches;
         });
     };
+    ProductInventoryByBatch.prototype.getFreshness = function (batch) {
+        return this.batchService.getFreshness(batch);
+    };
     ProductInventoryByBatch = __decorate([
         Component({
             selector: "product.inventory.by.batch",

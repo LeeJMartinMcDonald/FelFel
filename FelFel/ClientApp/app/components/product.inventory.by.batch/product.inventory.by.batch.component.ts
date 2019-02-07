@@ -37,4 +37,8 @@ export class ProductInventoryByBatch implements OnInit{
             this.batches = batches
         });
     }
+
+    getFreshness(batch: Batch) {
+        return this.batchService.getFreshness(batch);
+    }
 }
