@@ -33,6 +33,21 @@ namespace Application.Services
             _unitOfWork.BatchRepository.Add(batch);
         }
 
+        public async Task<Batch> GetBatch(int id)
+        {
+            var batch = await _unitOfWork.BatchRepository.GetBatch(id);
+            var result = new Batch
+            {
+                Id = batch.Id,
+                CheckedInDate = batch.CheckedInDate,
+                ExpirationDate = batch.ExpirationDate,
+                ExpiringTime = batch.ExpiringTime,
+                Quantity = batch.BatchItems.Sum(bi => bi.Quantity)
+            };
+
+            return result;
+        }
+
         public async Task<IEnumerable<Batch>> Get()
         {
             var batches = await _unitOfWork.BatchRepository.Get();

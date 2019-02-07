@@ -19,5 +19,13 @@ namespace Data.Queries
                 .ToListAsync()
                 ;
         }
+
+        public async Task<Batch> GetBatch(int id)
+        {
+            return await _context.Batches
+                .Include(x => x.BatchItems)
+                .FirstOrDefaultAsync(x => x.Id == id)
+                ;
+        }
     }
 }

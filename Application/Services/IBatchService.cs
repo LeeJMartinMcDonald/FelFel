@@ -9,6 +9,7 @@ namespace Application.Services
         void AddNewBatch(BatchNew model);
 
         Task<IEnumerable<Batch>> Get();
+        Task<Batch> GetBatch(int id);
 
         Task<IEnumerable<BatchItem>> GetBatchItems(int batchId);
     }
