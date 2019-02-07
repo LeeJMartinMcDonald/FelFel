@@ -22,6 +22,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { catchError, tap } from "rxjs/operators";
 import { AppConfig } from "../app.config";
+import { Product } from "../models/product";
 import { AlertService } from "../services/alert.service";
 import { BaseService } from "../services/base.service";
 var httpOptions = {
@@ -34,19 +35,31 @@ var ProductService = /** @class */ (function (_super) {
         _this.appConfig = appConfig;
         _this.alertService = alertService;
         _this.httpClient = httpClient;
-        _this.productSubject = new BehaviorSubject(new Array());
+        _this.productSubject = new BehaviorSubject(new Product());
+        _this.productsSubject = new BehaviorSubject(new Array());
         return _this;
     }
     ProductService.prototype.getProducts = function () {
         this.loadProducts().subscribe();
-        return this.productSubject.asObservable();
+        return this.productsSubject.asObservable();
     };
     ProductService.prototype.loadProducts = function () {
         var _this = this;
         return this.httpClient.get(this.appConfig.apiProductUrl + "GetProducts", httpOptions)
             .pipe(tap(function (_) {
-            _this.productSubject.next(_);
+            _this.productsSubject.next(_);
         }), catchError(this.handleError("GetProducts")));
+    };
+    ProductService.prototype.getProduct = function (id) {
+        this.loadProduct(id).subscribe();
+        return this.productSubject.asObservable();
+    };
+    ProductService.prototype.loadProduct = function (id) {
+        var _this = this;
+        return this.httpClient.get(this.appConfig.apiProductUrl + "GetProduct/" + id, httpOptions)
+            .pipe(tap(function (_) {
+            _this.productSubject.next(_);
+        }), catchError(this.handleError("GetProduct/" + id)));
     };
     ProductService = __decorate([
         Injectable(),

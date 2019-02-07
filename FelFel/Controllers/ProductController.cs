@@ -33,5 +33,17 @@ namespace FelFel.Controllers
 
             return StatusCode(500, "Unable to retrieve products.");
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetProduct(long id)
+        {
+            var product = await _productService.GetProduct(id);
+            if (product != null)
+            {
+                return Ok(product);
+            }
+
+            return StatusCode(500, "Unable to retrieve product.");
+        }
     }
 }

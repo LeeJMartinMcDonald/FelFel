@@ -73,6 +73,18 @@ namespace FelFel.Controllers
         }
 
         [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetBatchesByProduct(long id)
+        {
+            var batches = await _batchService.GetBatches(id);
+            if (batches != null)
+            {
+                return Ok(batches);
+            }
+
+            return StatusCode(500, "Unable to retrieve batches by product.");
+        }
+
+        [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetBatchItems(long id)
         {
             var batchItems = await _batchService.GetBatchItems(id);

@@ -25,6 +25,7 @@ const httpOptions = {
 export class BatchService extends BaseService {
     private batchSubject = new BehaviorSubject<Batch>(new Batch());
     private batchesSubject = new BehaviorSubject<Batch[]>(new Array<Batch>());
+    private batchesByProductSubject = new BehaviorSubject<Batch[]>(new Array<Batch>());
     private batchItemsSubject = new BehaviorSubject<BatchItem[]>(new Array<BatchItem>());
     private batchUpdateReasons = new BehaviorSubject<BatchUpdateReason[]>(new Array<BatchUpdateReason>());
 
@@ -52,6 +53,25 @@ export class BatchService extends BaseService {
                 }
             ),
             catchError(this.handleError<any>(`GetBatches`))
+        );
+    }
+
+    getBatchesByProduct(productId: number): Observable<Batch[]> {
+        this.loadBatchesByProduct(productId).subscribe();
+
+        return this.batchesByProductSubject.asObservable();
+    }
+
+    loadBatchesByProduct(productId: number): Observable<Batch[]> {
+        return this.httpClient.get<Batch[]>(
+            `${this.appConfig.apiBatchUrl}GetBatchesByProduct/${productId}`,
+            httpOptions)
+            .pipe(
+            tap(_ => {
+                this.batchesByProductSubject.next(_);
+            }
+            ),
+            catchError(this.handleError<any>(`GetBatchesByProduct/${productId}`))
         );
     }
 

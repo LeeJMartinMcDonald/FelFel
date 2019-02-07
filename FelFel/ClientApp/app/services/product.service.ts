@@ -20,7 +20,8 @@ const httpOptions = {
 
 @Injectable()
 export class ProductService extends BaseService {
-    private productSubject = new BehaviorSubject<Product[]>(new Array<Product>());
+    private productSubject = new BehaviorSubject<Product>(new Product());
+    private productsSubject = new BehaviorSubject<Product[]>(new Array<Product>());
 
     constructor(
         private readonly appConfig: AppConfig,
@@ -33,7 +34,7 @@ export class ProductService extends BaseService {
     getProducts(): Observable<Product[]> {
         this.loadProducts().subscribe();
 
-        return this.productSubject.asObservable();
+        return this.productsSubject.asObservable();
     }
 
     loadProducts(): Observable<Product[]> {
@@ -42,10 +43,29 @@ export class ProductService extends BaseService {
             httpOptions)
             .pipe(
                 tap(_ => {
-                    this.productSubject.next(_);
+                    this.productsSubject.next(_);
                 }
             ),
             catchError(this.handleError<any>(`GetProducts`))
+        );
+    }
+
+    getProduct(id: number): Observable<Product> {
+        this.loadProduct(id).subscribe();
+
+        return this.productSubject.asObservable();
+    }
+
+    loadProduct(id: number): Observable<Product> {
+        return this.httpClient.get<Product>(
+            `${this.appConfig.apiProductUrl}GetProduct/${id}`,
+            httpOptions)
+            .pipe(
+            tap(_ => {
+                this.productSubject.next(_);
+            }
+            ),
+            catchError(this.handleError<any>(`GetProduct/${id}`))
         );
     }
 }

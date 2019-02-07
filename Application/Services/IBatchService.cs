@@ -10,6 +10,8 @@ namespace Application.Services
         void AddBatchItem(BatchItem model);
 
         Task<IEnumerable<Batch>> GetBatches();
+        Task<IEnumerable<Batch>> GetBatches(long id);
+
         Task<Batch> GetBatch(long id);
         Task<IEnumerable<BatchItem>> GetBatchItems(long batchId);
         Task<IEnumerable<BatchUpdateReason>> GetBatchUpdateReasons();

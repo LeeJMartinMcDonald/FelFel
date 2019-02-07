@@ -15,6 +15,18 @@ namespace Application.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<Product> GetProduct(long id)
+        {
+            var product = await _unitOfWork.ProductRepository.Get(id);
+            var result = new Product
+            {
+                Id = product.Id,
+                Name = product.Name
+            };
+
+            return result;
+        }
+
         public async Task<IEnumerable<Product>> GetProducts()
         {
             var products = await _unitOfWork.ProductRepository.Get();

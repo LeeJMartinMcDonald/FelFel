@@ -1,0 +1,27 @@
+<h2>Product inventory by batch</h2>
+<ul class="u-reset-list">
+    <li>
+        <a [routerLink]="['/products']">Back to products</a>
+    </li>
+</ul>
+
+<p>Product: {{product.name}}</p>
+
+<table class="tb-data-table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Expiration Date
+        </th>
+        <th>
+            Quantity
+        </th>
+    </tr>
+    <tr *ngFor="let batch of batches; let index = index;" class="br-b-1">
+        <td>{{batch.id}}</td>
+        <td>{{batch.expirationDate}}</td>
+        <td>{{batch.quantity}}</td>
+    </tr>
+</table>

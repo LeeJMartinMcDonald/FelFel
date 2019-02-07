@@ -9,5 +9,6 @@ namespace Data.Queries
     {
         Task<Batch> GetBatch(long id);
         Task<IEnumerable<Batch>> Get();
+        Task<IEnumerable<Batch>> Get(long id);
     }
 }
