@@ -23,7 +23,7 @@ namespace FelFel.Controllers
         }
         
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetBatches()
+        public async Task<IActionResult> GetProducts()
         {
             var products = await _productService.GetProducts();
             if (products != null)
