@@ -1,0 +1,40 @@
+<h2>Update batch</h2>
+<p>Quantity: {{batch.quantity}}</p>
+
+<form name="form" #f="ngForm" novalidate class="f-form" (ngSubmit)="f.form.valid && save($event, f)" *ngIf="!batchItemSubmitted">
+    <div class="lf-row">
+        <div class="lf-1x4">
+            <label for="quantity" class="f-label">Quantity</label>
+        </div>
+        <div class="lf-3x4">
+            <input type="number"
+                   class="f-input"
+                   name="quantity"
+                   [(ngModel)]="batchItem.quantity"
+                   #quantity="ngModel"
+                   placeholder="Quantity"
+                   min="1"
+                   required />
+            <div *ngIf="quantity.invalid">
+                <div *ngIf="quantity.errors.required" class="u-required u-required--before">required</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="lf-1x1 lf-row lf-justify-center c-content-spacer">
+        <button [type]="button" class="b-icon ty-uppercase b-primary">
+            Update batch
+        </button>
+    </div>
+</form>
+
+<div *ngIf="batchItemSubmitted">
+    <alert></alert>
+    <div class="c-content-spacer">
+        <p>
+            <a class="" [routerLink]="['/batches']">
+                Back to batches
+            </a>
+        </p>
+    </div>
+</div>

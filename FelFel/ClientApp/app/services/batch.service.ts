@@ -22,6 +22,7 @@ const httpOptions = {
 
 @Injectable()
 export class BatchService extends BaseService {
+    private batchSubject = new BehaviorSubject<Batch>(new Batch());
     private batchesSubject = new BehaviorSubject<Batch[]>(new Array<Batch>());
     private batchItemsSubject = new BehaviorSubject<BatchItem[]>(new Array<BatchItem>());
 
@@ -59,7 +60,7 @@ export class BatchService extends BaseService {
     }
 
     loadBatchItems(batchId: number): Observable<BatchItem[]> {
-        return this.httpClient.get<Batch[]>(
+        return this.httpClient.get<BatchItem[]>(
             `${this.appConfig.apiBatchUrl}GetBatchItems/${batchId}`,
             httpOptions)
             .pipe(
@@ -82,6 +83,25 @@ export class BatchService extends BaseService {
                 this.logSuccess("New batch added");
             }),
             catchError(this.handleError<any>("AddNewBatch"))
+        );
+    }
+
+    getBatch(batchId: number): Observable<Batch> {
+        this.loadBatch(batchId).subscribe();
+
+        return this.batchSubject.asObservable();
+    }
+
+    loadBatch(batchId: number): Observable<Batch> {
+        return this.httpClient.get<Batch>(
+            `${this.appConfig.apiBatchUrl}GetBatch/${batchId}`,
+            httpOptions)
+            .pipe(
+            tap(_ => {
+                this.batchSubject.next(_);
+            }
+            ),
+            catchError(this.handleError<any>(`GetBatch/${batchId}`))
         );
     }
 }

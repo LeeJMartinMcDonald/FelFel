@@ -22,6 +22,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { catchError, tap } from "rxjs/operators";
 import { AppConfig } from "../app.config";
+import { Batch } from "../models/batch";
 import { AlertService } from "../services/alert.service";
 import { BaseService } from "../services/base.service";
 var httpOptions = {
@@ -34,6 +35,7 @@ var BatchService = /** @class */ (function (_super) {
         _this.appConfig = appConfig;
         _this.alertService = alertService;
         _this.httpClient = httpClient;
+        _this.batchSubject = new BehaviorSubject(new Batch());
         _this.batchesSubject = new BehaviorSubject(new Array());
         _this.batchItemsSubject = new BehaviorSubject(new Array());
         return _this;
@@ -66,6 +68,17 @@ var BatchService = /** @class */ (function (_super) {
         return this.httpClient.post(this.appConfig.apiBatchUrl + "AddNewBatch", model, httpOptions).pipe(tap(function (_) {
             _this.logSuccess("New batch added");
         }), catchError(this.handleError("AddNewBatch")));
+    };
+    BatchService.prototype.getBatch = function (batchId) {
+        this.loadBatch(batchId).subscribe();
+        return this.batchSubject.asObservable();
+    };
+    BatchService.prototype.loadBatch = function (batchId) {
+        var _this = this;
+        return this.httpClient.get(this.appConfig.apiBatchUrl + "GetBatch/" + batchId, httpOptions)
+            .pipe(tap(function (_) {
+            _this.batchSubject.next(_);
+        }), catchError(this.handleError("GetBatch/" + batchId)));
     };
     BatchService = __decorate([
         Injectable(),
