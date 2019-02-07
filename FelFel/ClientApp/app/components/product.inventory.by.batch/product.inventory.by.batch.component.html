@@ -22,7 +22,7 @@
     </tr>
     <tr *ngFor="let batch of batches; let index = index;" class="br-b-1">
         <td>{{batch.id}}</td>
-        <td>{{batch.expirationDate}}</td>
+        <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>
         <td>{{batch.quantity}}</td>
     </tr>
 </table>
