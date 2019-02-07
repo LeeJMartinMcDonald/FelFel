@@ -73,7 +73,7 @@ export class BatchService extends BaseService {
 
     addNewBatch(model: BatchNew): Observable<any> {
         this.logSuccess("Adding a new batch...");
-        return this.httpClient.put<any>(
+        return this.httpClient.post<any>(
             `${this.appConfig.apiBatchUrl}AddNewBatch`,
             model,
             httpOptions

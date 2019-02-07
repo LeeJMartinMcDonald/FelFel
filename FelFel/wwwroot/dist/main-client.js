@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e70d26c3a3a667676854"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "20544518b4b12af713b5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -6167,7 +6167,7 @@ var BatchService = /** @class */ (function (_super) {
     BatchService.prototype.addNewBatch = function (model) {
         var _this = this;
         this.logSuccess("Adding a new batch...");
-        return this.httpClient.put(this.appConfig.apiBatchUrl + "AddNewBatch", model, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
+        return this.httpClient.post(this.appConfig.apiBatchUrl + "AddNewBatch", model, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
             _this.logSuccess("New batch added");
         }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("AddNewBatch")));
     };
