@@ -14,6 +14,7 @@ namespace Entities
 
         public long Id { get; set; }
         public int Quantity { get; set; }
+        // TODO: Remove this redundant property
         public int Date { get; set; }
 
         public Batch Batch { get; set; }
