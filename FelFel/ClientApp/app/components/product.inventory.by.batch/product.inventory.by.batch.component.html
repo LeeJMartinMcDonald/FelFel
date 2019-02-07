@@ -7,7 +7,7 @@
 
 <p>Product: {{product.name}}</p>
 
-<table class="tb-data-table">
+<table class="tb-data-table" *ngIf="batches.length > 1">
     <tr>
         <th>
             ID
@@ -25,3 +25,7 @@
         <td>{{batch.quantity}}</td>
     </tr>
 </table>
+
+<div *ngIf="batches.length == 0">
+    <p>There are no batches to display.</p>
+</div>
