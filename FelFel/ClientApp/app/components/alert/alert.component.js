@@ -17,9 +17,6 @@ var AlertComponent = /** @class */ (function () {
         var _this = this;
         this.alertService.getMessage().subscribe(function (message) { _this.message = message; });
     };
-    AlertComponent.prototype.closeAlert = function () {
-        this.message = undefined;
-    };
     AlertComponent = __decorate([
         Component({
             selector: "alert",

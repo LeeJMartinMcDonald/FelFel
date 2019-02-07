@@ -14,17 +14,19 @@ var BatchAddComponent = /** @class */ (function () {
     function BatchAddComponent(batchService) {
         this.batchService = batchService;
         this.batchNew = new BatchNew();
+        this.batchSubmitted = false;
     }
     BatchAddComponent.prototype.ngOnInit = function () {
-        this.batchNew.quantity = 0;
+    };
+    BatchAddComponent.prototype.reset = function (form) {
+        this.batchSubmitted = false;
+        this.batchNew = new BatchNew();
+        form.reset();
     };
     BatchAddComponent.prototype.save = function ($event) {
-        var _this = this;
+        this.batchSubmitted = true;
         this.batchNew.checkedInDate = new Date();
-        this.batchService.addNewBatch(this.batchNew).subscribe(function (result) {
-            _this.batchNew = new BatchNew();
-            _this.batchNew.quantity = 0;
-        });
+        this.batchService.addNewBatch(this.batchNew).subscribe();
     };
     BatchAddComponent = __decorate([
         Component({

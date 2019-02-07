@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d94b6163adbe13acb399"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fd2320c6e3d52414716b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -56525,9 +56525,6 @@ var AlertComponent = /** @class */ (function () {
         var _this = this;
         this.alertService.getMessage().subscribe(function (message) { _this.message = message; });
     };
-    AlertComponent.prototype.closeAlert = function () {
-        this.message = undefined;
-    };
     AlertComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "alert",
@@ -56544,13 +56541,13 @@ var AlertComponent = /** @class */ (function () {
 /* 686 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"c-alert\" \r\n    [ngClass]=\"{\r\n        'c-alert--success': message !== undefined && message.type === 'success',\r\n        'c-alert--danger': message !== undefined && message.type === 'error',\r\n        'c-alert--visible': message !== undefined,\r\n        'c-alert--hidden': message === undefined\r\n     }\">\r\n    <div class=\"lf-row\">\r\n        <button type=\"button\" (click)=\"closeAlert()\" class=\"b-icon c-alert__close\">X</button>\r\n\r\n        <div class=\"lf-1x1 lf-row lf-align-items-center lf-justify-center\">\r\n            <p class=\"c-alert__text\">{{message?.text}}</p>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"c-alert\" \r\n    [ngClass]=\"{\r\n        'c-alert--success': message !== undefined && message.type === 'success',\r\n        'c-alert--danger': message !== undefined && message.type === 'error',\r\n        'c-alert--visible': message !== undefined,\r\n        'c-alert--hidden': message === undefined\r\n     }\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x1 lf-row lf-align-items-center lf-justify-center\">\r\n            <p class=\"c-alert__text\">{{message?.text}}</p>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 687 */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"c-header\"></header>\r\n<main role=\"main\" class=\"c-main\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4 c-menu-container\">\r\n            <site-menu></site-menu>\r\n        </div>\r\n        <div class=\"lf-3x4 bg-grey\">\r\n            <alert></alert>\r\n            <div class=\"c-content-container\">\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>\r\n<footer class=\"c-footer bg-white\"></footer>";
+module.exports = "<header class=\"c-header\"></header>\r\n<main role=\"main\" class=\"c-main\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4 c-menu-container\">\r\n            <site-menu></site-menu>\r\n        </div>\r\n        <div class=\"lf-3x4 bg-grey\">\r\n            <div class=\"c-content-container\">\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</main>\r\n<footer class=\"c-footer bg-white\"></footer>";
 
 /***/ }),
 /* 688 */
@@ -63490,17 +63487,19 @@ var BatchAddComponent = /** @class */ (function () {
     function BatchAddComponent(batchService) {
         this.batchService = batchService;
         this.batchNew = new __WEBPACK_IMPORTED_MODULE_1__models_batch_new__["a" /* BatchNew */]();
+        this.batchSubmitted = false;
     }
     BatchAddComponent.prototype.ngOnInit = function () {
-        this.batchNew.quantity = 0;
+    };
+    BatchAddComponent.prototype.reset = function (form) {
+        this.batchSubmitted = false;
+        this.batchNew = new __WEBPACK_IMPORTED_MODULE_1__models_batch_new__["a" /* BatchNew */]();
+        form.reset();
     };
     BatchAddComponent.prototype.save = function ($event) {
-        var _this = this;
+        this.batchSubmitted = true;
         this.batchNew.checkedInDate = new Date();
-        this.batchService.addNewBatch(this.batchNew).subscribe(function (result) {
-            _this.batchNew = new __WEBPACK_IMPORTED_MODULE_1__models_batch_new__["a" /* BatchNew */]();
-            _this.batchNew.quantity = 0;
-        });
+        this.batchService.addNewBatch(this.batchNew).subscribe();
     };
     BatchAddComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -63560,7 +63559,7 @@ var Batch = /** @class */ (function () {
 /* 779 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Add new batch</h2>\r\n\r\n<form name=\"batchAddForm\" #f=\"ngForm\" novalidate class=\"f-form f-form--inline\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   id=\"quantity\"\r\n                   required\r\n                   placeholder=\"Quantity\"\r\n                   [(ngModel)]=\"batchNew.quantity\" />\r\n        </div>\r\n    </div>\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"expirationDate\" class=\"f-label\">Expiration Date</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"date\"\r\n                   class=\"f-input\"\r\n                   name=\"expirationDate\"\r\n                   id=\"expirationDate\"\r\n                   required\r\n                   placeholder=\"Expiration date\"\r\n                   [(ngModel)]=\"batchNew.expirationDate\" />\r\n        </div>\r\n    </div>\r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\" (click)=\"save($event)\">\r\n            Add new batch\r\n        </button>\r\n    </div>\r\n</form>";
+module.exports = "<h2>Add new batch</h2>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchNew.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   min=\"1\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"lf-row  c-content-spacer\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"expirationDate\" class=\"f-label\">Expiration Date</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"date\"\r\n                   class=\"f-input\"\r\n                   name=\"expirationDate\"\r\n                   [(ngModel)]=\"batchNew.expirationDate\"\r\n                   #expirationDate=\"ngModel\"\r\n                   placeholder=\"Expiration date\"\r\n                   required />\r\n            <div *ngIf=\"expirationDate.invalid\">\r\n                <div *ngIf=\"expirationDate.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Add new batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\" (click)=\"reset(f)\">\r\n            Add a new batch\r\n        </button>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 780 */

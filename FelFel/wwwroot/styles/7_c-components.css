@@ -21,11 +21,6 @@
 }
 .c-alert {
   background: #FFF;
-  bottom: 0;
-  padding: 15px 20px 10px;
-  position: fixed;
-  right: 0;
-  width: 25%;
   z-index: 1;
 }
 .c-alert__close {
@@ -47,7 +42,7 @@
 }
 .c-alert--hidden {
   bottom: -100vh;
-  transition: all ease-in-out 2s;
+  transition: all ease-in-out 1s;
 }
 .c-alert--success {
   background-color: #d4edda;
@@ -56,7 +51,7 @@
 }
 .c-alert--visible {
   bottom: 0;
-  transition: all ease-in-out 2s;
+  transition: all ease-in-out 1s;
 }
 .c-content-container {
   padding: 2%;
