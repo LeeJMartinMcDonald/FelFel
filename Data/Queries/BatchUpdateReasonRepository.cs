@@ -18,5 +18,11 @@ namespace Data.Queries
                 .ToListAsync()
                 ;
         }
+        public async Task<BatchUpdateReason> Get(long id)
+        {
+            return await _context.BatchUpdateReasons
+                .FirstOrDefaultAsync(x => x.Id == id)
+                ;
+        }
     }
 }

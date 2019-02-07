@@ -17,6 +17,10 @@ namespace Application.Services
 
         public void AddNewBatch(BatchNew model)
         {
+            // TODO: Refactor - Create enum for reason ids
+            // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
+            var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(1).Result;
+
             // idealy use an auto-mapper
             var batch = new Entities.Batch
             {
@@ -27,6 +31,7 @@ namespace Application.Services
 
             batch.BatchItems.Add(new Entities.BatchItem
             {
+                BatchUpdateReason = batchUpdateReason,
                 Quantity = model.Quantity
             });
 
@@ -35,13 +40,16 @@ namespace Application.Services
 
         public void AddBatchItem(BatchItem model)
         {
+            // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
             var batch = _unitOfWork.BatchRepository.GetBatch(model.BatchId).Result;
+            var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(model.ReasonId).Result;
 
             // idealy use an auto-mapper
             var batchItem = new Entities.BatchItem
             {
                 Batch = batch,
-                Quantity = model.Quantity
+                Quantity = model.Quantity,
+                BatchUpdateReason = batchUpdateReason
             };
 
             _unitOfWork.BatchItemRepository.Add(batchItem);

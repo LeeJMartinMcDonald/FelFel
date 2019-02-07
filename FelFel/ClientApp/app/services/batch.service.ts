@@ -12,6 +12,7 @@ import { LoadingStatus } from "../enums/loading.status";
 import { Batch } from "../models/batch";
 import { BatchNew } from "../models/batch.new";
 import { BatchItem } from "../models/batch.item";
+import { BatchUpdateReason } from "../models/batch.update.reason";
 
 import { AlertService } from "../services/alert.service";
 import { BaseService } from "../services/base.service";
@@ -25,6 +26,7 @@ export class BatchService extends BaseService {
     private batchSubject = new BehaviorSubject<Batch>(new Batch());
     private batchesSubject = new BehaviorSubject<Batch[]>(new Array<Batch>());
     private batchItemsSubject = new BehaviorSubject<BatchItem[]>(new Array<BatchItem>());
+    private batchUpdateReasons = new BehaviorSubject<BatchUpdateReason[]>(new Array<BatchUpdateReason>());
 
     constructor(
         private readonly appConfig: AppConfig,
@@ -70,6 +72,25 @@ export class BatchService extends BaseService {
             ),
             catchError(this.handleError<any>(`GetBatchItems/${batchId}`))
             );
+    }
+
+    getBatchUpdateReasons(): Observable<BatchUpdateReason[]> {
+        this.loadBatchUpdateReasons().subscribe();
+
+        return this.batchUpdateReasons.asObservable();
+    }
+
+    loadBatchUpdateReasons(): Observable<BatchUpdateReason[]> {
+        return this.httpClient.get<BatchUpdateReason[]>(
+            `${this.appConfig.apiBatchUrl}GetBatchUpdateReasons`,
+            httpOptions)
+            .pipe(
+            tap(_ => {
+                this.batchUpdateReasons.next(_);
+            }
+            ),
+            catchError(this.handleError<any>(`GetBatchUpdateReasons`))
+        );
     }
 
     addNewBatch(model: BatchNew): Observable<any> {

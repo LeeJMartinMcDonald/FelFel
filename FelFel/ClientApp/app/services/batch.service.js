@@ -38,6 +38,7 @@ var BatchService = /** @class */ (function (_super) {
         _this.batchSubject = new BehaviorSubject(new Batch());
         _this.batchesSubject = new BehaviorSubject(new Array());
         _this.batchItemsSubject = new BehaviorSubject(new Array());
+        _this.batchUpdateReasons = new BehaviorSubject(new Array());
         return _this;
     }
     BatchService.prototype.getBatches = function () {
@@ -61,6 +62,17 @@ var BatchService = /** @class */ (function (_super) {
             .pipe(tap(function (_) {
             _this.batchItemsSubject.next(_);
         }), catchError(this.handleError("GetBatchItems/" + batchId)));
+    };
+    BatchService.prototype.getBatchUpdateReasons = function () {
+        this.loadBatchUpdateReasons().subscribe();
+        return this.batchUpdateReasons.asObservable();
+    };
+    BatchService.prototype.loadBatchUpdateReasons = function () {
+        var _this = this;
+        return this.httpClient.get(this.appConfig.apiBatchUrl + "GetBatchUpdateReasons", httpOptions)
+            .pipe(tap(function (_) {
+            _this.batchUpdateReasons.next(_);
+        }), catchError(this.handleError("GetBatchUpdateReasons")));
     };
     BatchService.prototype.addNewBatch = function (model) {
         var _this = this;

@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bfb6189046f3fca2bf31"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "33151ec2e0165bfd6703"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -5053,6 +5053,7 @@ var BatchService = /** @class */ (function (_super) {
         _this.batchSubject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](new __WEBPACK_IMPORTED_MODULE_5__models_batch__["a" /* Batch */]());
         _this.batchesSubject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](new Array());
         _this.batchItemsSubject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](new Array());
+        _this.batchUpdateReasons = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](new Array());
         return _this;
     }
     BatchService.prototype.getBatches = function () {
@@ -5076,6 +5077,17 @@ var BatchService = /** @class */ (function (_super) {
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
             _this.batchItemsSubject.next(_);
         }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("GetBatchItems/" + batchId)));
+    };
+    BatchService.prototype.getBatchUpdateReasons = function () {
+        this.loadBatchUpdateReasons().subscribe();
+        return this.batchUpdateReasons.asObservable();
+    };
+    BatchService.prototype.loadBatchUpdateReasons = function () {
+        var _this = this;
+        return this.httpClient.get(this.appConfig.apiBatchUrl + "GetBatchUpdateReasons", httpOptions)
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
+            _this.batchUpdateReasons.next(_);
+        }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("GetBatchUpdateReasons")));
     };
     BatchService.prototype.addNewBatch = function (model) {
         var _this = this;
@@ -63641,7 +63653,7 @@ var BatchHistoryComponent = /** @class */ (function () {
 /* 781 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Batch history</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-update', batchId]\">Batch update</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            Reasons\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n        <td>{{batchItem.reason}}</td>\r\n    </tr>\r\n</table>";
+module.exports = "<h2>Batch history</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-update', batchId]\">Batch update</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            Reason\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n        <td>{{batchItem.reason}}</td>\r\n    </tr>\r\n</table>";
 
 /***/ }),
 /* 782 */
@@ -63681,6 +63693,9 @@ var BatchUpdateComponent = /** @class */ (function () {
         this.batchItem.batchId = this.batchId;
         this.batchService.getBatch(this.batchId).subscribe(function (batch) {
             _this.batch = batch;
+        });
+        this.batchService.getBatchUpdateReasons().subscribe(function (reasons) {
+            _this.batchUpdateReasons = reasons;
         });
     };
     BatchUpdateComponent.prototype.reset = function (form) {
@@ -63733,7 +63748,7 @@ var BatchItem = /** @class */ (function () {
 /* 784 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Update batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-history', batch.id]\">Batch history</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
+module.exports = "<h2>Update batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-history', batch.id]\">Batch history</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"reasonId\" class=\"f-label\">Reason</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <select\r\n                    name=\"reason\"\r\n                    [(ngModel)]=\"batchItem.reasonId\"\r\n                    #reason=\"ngModel\"\r\n                    placeholder=\"Reason\"\r\n                    required>\r\n                <option value=\"0\">--Please select--</option>\r\n                <option \r\n                    *ngFor=\"let batchUpdateReason of batchUpdateReasons\" \r\n                    value=\"{{batchUpdateReason.id}}\">\r\n                    {{batchUpdateReason.reason}}\r\n                </option>\r\n            </select>\r\n            <div *ngIf=\"reason.invalid\">\r\n                <div *ngIf=\"reason.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 785 */

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { Batch } from "../../models/batch";
 import { BatchItem } from "../../models/batch.item";
+import { BatchUpdateReason } from "../../models/batch.update.reason";
 
 import { BatchService } from "../../services/batch.service";
 
@@ -17,6 +18,7 @@ export class BatchUpdateComponent implements OnInit{
     batchItem: BatchItem = new BatchItem();
     batchItemSubmitted = false;
     batchId: number;
+    batchUpdateReasons: BatchUpdateReason[];
 
     constructor(
         private readonly batchService: BatchService,
@@ -32,6 +34,10 @@ export class BatchUpdateComponent implements OnInit{
 
         this.batchService.getBatch(this.batchId).subscribe(batch => {
             this.batch = batch
+        });
+
+        this.batchService.getBatchUpdateReasons().subscribe(reasons => {
+            this.batchUpdateReasons = reasons;
         });
     }
 

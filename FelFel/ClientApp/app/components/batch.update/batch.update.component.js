@@ -27,6 +27,9 @@ var BatchUpdateComponent = /** @class */ (function () {
         this.batchService.getBatch(this.batchId).subscribe(function (batch) {
             _this.batch = batch;
         });
+        this.batchService.getBatchUpdateReasons().subscribe(function (reasons) {
+            _this.batchUpdateReasons = reasons;
+        });
     };
     BatchUpdateComponent.prototype.reset = function (form) {
         this.batchItemSubmitted = false;

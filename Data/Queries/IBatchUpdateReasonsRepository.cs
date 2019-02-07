@@ -8,5 +8,6 @@ namespace Data.Queries
     public interface IBatchUpdateReasonRepository : IRepo<BatchUpdateReason>
     {
         Task<IEnumerable<BatchUpdateReason>> Get();
+        Task<BatchUpdateReason> Get(long id);
     }
 }
