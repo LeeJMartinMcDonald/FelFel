@@ -7,6 +7,6 @@ namespace Data.Queries
 {
     public interface IBatchItemRepository : IRepo<BatchItem>
     {
-        Task<IEnumerable<BatchItem>> Get(int batchId);
+        Task<IEnumerable<BatchItem>> Get(long batchId);
     }
 }

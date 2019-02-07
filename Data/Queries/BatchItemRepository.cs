@@ -13,7 +13,7 @@ namespace Data.Queries
         {
         }
 
-        public async Task<IEnumerable<BatchItem>> Get(int batchId)
+        public async Task<IEnumerable<BatchItem>> Get(long batchId)
         {
             return await _context.BatchItems
                 .Include(x => x.Batch)

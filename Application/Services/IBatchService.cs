@@ -7,10 +7,12 @@ namespace Application.Services
     public interface IBatchService
     {
         void AddNewBatch(BatchNew model);
+        void AddBatchItem(BatchItem model);
 
+        // TODO: Refactor method name to GetBatches
         Task<IEnumerable<Batch>> Get();
-        Task<Batch> GetBatch(int id);
+        Task<Batch> GetBatch(long id);
 
-        Task<IEnumerable<BatchItem>> GetBatchItems(int batchId);
+        Task<IEnumerable<BatchItem>> GetBatchItems(long batchId);
     }
 }

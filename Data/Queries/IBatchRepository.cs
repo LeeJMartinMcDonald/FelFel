@@ -7,7 +7,7 @@ namespace Data.Queries
 {
     public interface IBatchRepository : IRepo<Batch>
     {
-        Task<Batch> GetBatch(int id);
+        Task<Batch> GetBatch(long id);
         Task<IEnumerable<Batch>> Get();
     }
 }

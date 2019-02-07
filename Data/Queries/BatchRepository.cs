@@ -20,7 +20,7 @@ namespace Data.Queries
                 ;
         }
 
-        public async Task<Batch> GetBatch(int id)
+        public async Task<Batch> GetBatch(long id)
         {
             return await _context.Batches
                 .Include(x => x.BatchItems)

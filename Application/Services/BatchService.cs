@@ -33,7 +33,21 @@ namespace Application.Services
             _unitOfWork.BatchRepository.Add(batch);
         }
 
-        public async Task<Batch> GetBatch(int id)
+        public void AddBatchItem(BatchItem model)
+        {
+            var batch = _unitOfWork.BatchRepository.GetBatch(model.BatchId).Result;
+
+            // idealy use an auto-mapper
+            var batchItem = new Entities.BatchItem
+            {
+                Batch = batch,
+                Quantity = model.Quantity
+            };
+
+            _unitOfWork.BatchItemRepository.Add(batchItem);
+        }
+
+        public async Task<Batch> GetBatch(long id)
         {
             var batch = await _unitOfWork.BatchRepository.GetBatch(id);
             var result = new Batch
@@ -62,7 +76,7 @@ namespace Application.Services
             return result;
         }
 
-        public async Task<IEnumerable<BatchItem>> GetBatchItems(int batchId)
+        public async Task<IEnumerable<BatchItem>> GetBatchItems(long batchId)
         {
             var batches = await _unitOfWork.BatchItemRepository.Get(batchId);
             var result = batches.Select(x => new BatchItem
