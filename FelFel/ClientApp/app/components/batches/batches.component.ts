@@ -22,4 +22,21 @@ export class BatchesComponent implements OnInit{
             this.batches = batches;
         });
     }
+
+    getFreshness(batch: Batch) {
+        var currentDate: Date = new Date();
+        var expirationDate: Date = new Date(batch.expirationDate);
+        var expiringDate: Date = new Date(expirationDate);
+
+        expiringDate.setDate(expiringDate.getDate() - batch.expiringTime)
+
+        if (currentDate >= expirationDate) {
+            return "Expired"
+        }
+        else if (currentDate >= expiringDate){
+            return "Expiring"
+        } else {
+            return "Fresh"
+        }
+    }
 }
