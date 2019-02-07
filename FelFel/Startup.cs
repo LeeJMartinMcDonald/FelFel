@@ -30,10 +30,6 @@ namespace FelFel
             });
             ProjectEntities.ConnectionString = connectionString;
 
-            // Repositories
-            services.AddScoped<IBatchRepository, BatchRepository>();
-            services.AddScoped<IBatchItemRepository, BatchItemRepository>();
-
             // Helpers
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
