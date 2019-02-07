@@ -23,6 +23,9 @@ var BatchHistoryComponent = /** @class */ (function () {
         this.batchService.getBatchItems(this.batchId).subscribe(function (batchItems) {
             _this.batchItems = batchItems;
         });
+        this.batchService.getBatch(this.batchId).subscribe(function (batch) {
+            _this.batch = batch;
+        });
     };
     BatchHistoryComponent = __decorate([
         Component({

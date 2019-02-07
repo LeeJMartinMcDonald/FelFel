@@ -1,4 +1,14 @@
 <h2>Batch history</h2>
+<ul class="u-reset-list">
+    <li>
+        <a [routerLink]="['/batch-update', batchId]">Batch update</a>
+    </li>
+    <li>
+        <a [routerLink]="['/batches']">Back to batches</a>
+    </li>
+</ul>
+
+<p>Quantity: {{batch.quantity}}</p>
 
 <table class="tb-data-table">
     <tr>

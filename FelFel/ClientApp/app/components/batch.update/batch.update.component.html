@@ -1,4 +1,13 @@
 <h2>Update batch</h2>
+<ul class="u-reset-list">
+    <li>
+        <a [routerLink]="['/batch-history', batch.id]">Batch history</a>
+    </li>
+    <li>
+        <a [routerLink]="['/batches']">Back to batches</a>
+    </li>
+</ul>
+
 <p>Quantity: {{batch.quantity}}</p>
 
 <form name="form" #f="ngForm" novalidate class="f-form" (ngSubmit)="f.form.valid && save($event, f)" *ngIf="!batchItemSubmitted">

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 
 import { BatchItem } from "../../models/batch.item";
+import { Batch } from "../../models/batch";
 
 import { BatchService } from "../../services/batch.service";
 
@@ -11,6 +12,7 @@ import { BatchService } from "../../services/batch.service";
 })
 
 export class BatchHistoryComponent implements OnInit{
+    batch: Batch;
     batchItems: BatchItem[];
     batchId: number;
 
@@ -27,6 +29,10 @@ export class BatchHistoryComponent implements OnInit{
 
         this.batchService.getBatchItems(this.batchId).subscribe(batchItems => {
             this.batchItems = batchItems;
+        });
+
+        this.batchService.getBatch(this.batchId).subscribe(batch => {
+            this.batch = batch
         });
     }
 }

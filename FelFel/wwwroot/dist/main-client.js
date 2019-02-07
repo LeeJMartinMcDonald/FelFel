@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "881937f3c6b5584f8471"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "32e32ce84194b14be551"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -63499,7 +63499,7 @@ var LoadingStatus;
 /* 776 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Batches</h2>\r\n\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 0\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Checked in date\r\n        </th>\r\n        <th>\r\n            Expiration date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            Options\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.checkedInDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n        <td class=\"tb-options\">\r\n            <ul class=\"u-reset-list lf-row\">\r\n                <li class=\"lf-1x2 l-pr-2\">\r\n                    <a [routerLink]=\"['/batch-update', batch.id]\">Update stock</a>\r\n                </li>\r\n                <li class=\"lf-1x2\">\r\n                    <a [routerLink]=\"['/batch-history', batch.id]\">History</a>\r\n                </li>\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n</table>\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
+module.exports = "<h2>Batches</h2>\r\n\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 0\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Checked in date\r\n        </th>\r\n        <th>\r\n            Expiration date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            Options\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.checkedInDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n        <td class=\"tb-options\">\r\n            <ul class=\"u-reset-list lf-row\">\r\n                <li class=\"lf-1x2 l-pr-2\">\r\n                    <a [routerLink]=\"['/batch-update', batch.id]\">Update batch</a>\r\n                </li>\r\n                <li class=\"lf-1x2\">\r\n                    <a [routerLink]=\"['/batch-history', batch.id]\">History</a>\r\n                </li>\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n</table>\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
 
 /***/ }),
 /* 777 */
@@ -63620,6 +63620,9 @@ var BatchHistoryComponent = /** @class */ (function () {
         this.batchService.getBatchItems(this.batchId).subscribe(function (batchItems) {
             _this.batchItems = batchItems;
         });
+        this.batchService.getBatch(this.batchId).subscribe(function (batch) {
+            _this.batch = batch;
+        });
     };
     BatchHistoryComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -63638,7 +63641,7 @@ var BatchHistoryComponent = /** @class */ (function () {
 /* 781 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Batch history</h2>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n    </tr>\r\n</table>";
+module.exports = "<h2>Batch history</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-update', batchId]\">Batch update</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n    </tr>\r\n</table>";
 
 /***/ }),
 /* 782 */
@@ -63730,7 +63733,7 @@ var BatchItem = /** @class */ (function () {
 /* 784 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Update batch</h2>\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
+module.exports = "<h2>Update batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-history', batch.id]\">Batch history</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 785 */
