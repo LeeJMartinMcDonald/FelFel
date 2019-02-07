@@ -20,6 +20,7 @@ namespace Application.Services
             // TODO: Refactor - Create enum for reason ids
             // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
             var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(1).Result;
+            var product = _unitOfWork.ProductRepository.Get(model.ProductId).Result;
 
             // idealy use an auto-mapper
             var batch = new Entities.Batch
@@ -27,6 +28,7 @@ namespace Application.Services
                 ExpirationDate = model.ExpirationDate,
                 ExpiringTime = model.ExpiringTime,
                 CheckedInDate = model.CheckedInDate,
+                Product = product
             };
 
             batch.BatchItems.Add(new Entities.BatchItem

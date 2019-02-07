@@ -10,13 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from "@angular/core";
 import { BatchNew } from "../../models/batch.new";
 import { BatchService } from "../../services/batch.service";
+import { ProductService } from "../../services/product.service";
 var BatchAddComponent = /** @class */ (function () {
-    function BatchAddComponent(batchService) {
+    function BatchAddComponent(batchService, productService) {
         this.batchService = batchService;
+        this.productService = productService;
         this.batchNew = new BatchNew();
         this.batchSubmitted = false;
     }
     BatchAddComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productService.getProducts().subscribe(function (products) {
+            _this.products = products;
+        });
     };
     BatchAddComponent.prototype.reset = function (form) {
         this.batchSubmitted = false;
@@ -33,7 +39,8 @@ var BatchAddComponent = /** @class */ (function () {
             selector: "batch-add",
             template: require("./batch.add.component.html")
         }),
-        __metadata("design:paramtypes", [BatchService])
+        __metadata("design:paramtypes", [BatchService,
+            ProductService])
     ], BatchAddComponent);
     return BatchAddComponent;
 }());

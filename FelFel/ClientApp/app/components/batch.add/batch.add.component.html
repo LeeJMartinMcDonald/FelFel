@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="lf-row  c-content-spacer">
+    <div class="lf-row c-content-spacer">
         <div class="lf-1x4">
             <label for="expirationDate" class="f-label">Expiration Date</label>
         </div>
@@ -33,6 +33,27 @@
                    required />
             <div *ngIf="expirationDate.invalid">
                 <div *ngIf="expirationDate.errors.required" class="u-required u-required--before">required</div>
+            </div>
+        </div>
+    </div>
+    <div class="lf-row c-content-spacer">
+        <div class="lf-1x4">
+            <label for="productId" class="f-label">Product</label>
+        </div>
+        <div class="lf-3x4">
+            <select name="product"
+                    [(ngModel)]="batchNew.productId"
+                    #product="ngModel"
+                    placeholder="Product"
+                    required>
+                <option value="0">--Please select--</option>
+                <option *ngFor="let product of products"
+                        value="{{product.id}}">
+                    {{product.name}}
+                </option>
+            </select>
+            <div *ngIf="product.invalid">
+                <div *ngIf="product.errors.required" class="u-required u-required--before">required</div>
             </div>
         </div>
     </div>

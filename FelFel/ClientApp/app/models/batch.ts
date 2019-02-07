@@ -4,4 +4,5 @@ export class Batch {
     expirationDate: Date;
     expiringTime: number;
     quantity: number;
+    productId: number;
 }

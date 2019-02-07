@@ -8,5 +8,6 @@ namespace Data.Queries
     public interface IProductRepository : IRepo<Product>
     {
         Task<IEnumerable<Product>> Get();
+        Task<Product> Get(long id);
     }
 }
