@@ -1,6 +1,6 @@
 <h2>Batches</h2>
 
-<table class="tb-data-table">
+<table class="tb-data-table" *ngIf="batches.length > 0">
     <tr>
         <th>
             ID
@@ -26,3 +26,6 @@
         <td><a [routerLink]="['/batch-history', batch.id]">History</a></td>
     </tr>
 </table>
+<div *ngIf="batches.length == 0">
+    <p>There are no batches to display.</p>
+</div>
