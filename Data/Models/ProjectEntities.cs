@@ -32,7 +32,7 @@ namespace Data.Models
 
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<BatchItem> BatchItems { get; set; }
-        public virtual DbSet<CorrectionReason> CorrectionReasons { get; set; }
+        public virtual DbSet<BatchUpdateReason> BatchUpdateReasons { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }

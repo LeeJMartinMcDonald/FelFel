@@ -18,6 +18,6 @@ namespace Entities
 
         public Batch Batch { get; set; }
         public Customer Customer { get; set; }
-        public CorrectionReason CorrectionReason {get; set;}
+        public BatchUpdateReason BatchUpdateReason { get; set;}
     }
 }

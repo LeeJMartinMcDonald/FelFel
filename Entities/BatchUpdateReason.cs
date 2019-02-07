@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities
 {
-    [Table("CorrectionReasons")]
+    [Table("BatchUpdateReasons")]
 
-    public partial class CorrectionReason
+    public partial class BatchUpdateReason
     {
-        public CorrectionReason()
+        public BatchUpdateReason()
         {
             BatchItems = new HashSet<BatchItem>();
         }
