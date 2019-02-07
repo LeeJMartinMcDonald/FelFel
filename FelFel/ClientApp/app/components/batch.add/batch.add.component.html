@@ -5,19 +5,33 @@
         <div class="lf-1x4">
             <label for="quantity" class="f-label">Quantity</label>
         </div>
-        <div class="lf-3x3">
-            <input type="text"
+        <div class="lf-3x4">
+            <input type="number"
                    class="f-input"
                    name="quantity"
                    id="quantity"
                    required
-                   [placeholder]="Quantity"
+                   placeholder="Quantity"
                    [(ngModel)]="batchNew.quantity" />
         </div>
-        <div class="lf-1x1 lf-row lf-justify-center c-content-spacer">
-            <button [type]="button" class="b-icon ty-uppercase b-primary" (click)="save($event)">
-                Add new batch
-            </button>
+    </div>
+    <div class="lf-row">
+        <div class="lf-1x4">
+            <label for="expirationDate" class="f-label">Expiration Date</label>
         </div>
+        <div class="lf-3x4">
+            <input type="date"
+                   class="f-input"
+                   name="expirationDate"
+                   id="expirationDate"
+                   required
+                   placeholder="Expiration date"
+                   [(ngModel)]="batchNew.expirationDate" />
+        </div>
+    </div>
+    <div class="lf-1x1 lf-row lf-justify-center c-content-spacer">
+        <button [type]="button" class="b-icon ty-uppercase b-primary" (click)="save($event)">
+            Add new batch
+        </button>
     </div>
 </form>

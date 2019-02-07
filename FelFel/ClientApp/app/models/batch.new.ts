@@ -1,3 +1,4 @@
-export class BatchNew {
-    quantity: number;
+import { Batch } from "./batch";
+
+export class BatchNew extends Batch {
 }

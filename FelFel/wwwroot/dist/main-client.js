@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "20544518b4b12af713b5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4550ecc08f3e9a8dd3a4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -39551,14 +39551,14 @@ function getBaseUrl() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_app_app_component__ = __webpack_require__(386);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_batches_batches_component__ = __webpack_require__(688);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_batch_add_batch_add_component__ = __webpack_require__(776);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_batch_history_batch_history_component__ = __webpack_require__(779);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_site_footer_site_footer_component__ = __webpack_require__(781);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_site_header_site_header_component__ = __webpack_require__(783);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_site_menu_site_menu_component__ = __webpack_require__(785);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_welcome_welcome_component__ = __webpack_require__(787);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_batch_history_batch_history_component__ = __webpack_require__(780);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_site_footer_site_footer_component__ = __webpack_require__(782);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_site_header_site_header_component__ = __webpack_require__(784);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_site_menu_site_menu_component__ = __webpack_require__(786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_welcome_welcome_component__ = __webpack_require__(788);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_alert_service__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_batch_service__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_external_resource_service__ = __webpack_require__(789);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_external_resource_service__ = __webpack_require__(790);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63496,7 +63496,6 @@ var BatchAddComponent = /** @class */ (function () {
     };
     BatchAddComponent.prototype.save = function ($event) {
         var _this = this;
-        console.log(this.batchNew);
         this.batchService.addNewBatch(this.batchNew).subscribe(function (result) {
             _this.batchNew = new __WEBPACK_IMPORTED_MODULE_1__models_batch_new__["a" /* BatchNew */]();
             _this.batchNew.quantity = 0;
@@ -63505,7 +63504,7 @@ var BatchAddComponent = /** @class */ (function () {
     BatchAddComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "batch-add",
-            template: __webpack_require__(778)
+            template: __webpack_require__(779)
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_batch_service__["a" /* BatchService */]])
     ], BatchAddComponent);
@@ -63520,22 +63519,50 @@ var BatchAddComponent = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BatchNew; });
-var BatchNew = /** @class */ (function () {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__batch__ = __webpack_require__(778);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var BatchNew = /** @class */ (function (_super) {
+    __extends(BatchNew, _super);
     function BatchNew() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return BatchNew;
-}());
+}(__WEBPACK_IMPORTED_MODULE_0__batch__["a" /* Batch */]));
 
 //# sourceMappingURL=batch.new.js.map
 
 /***/ }),
 /* 778 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<h2>Add new batch</h2>\r\n\r\n<form name=\"batchAddForm\" #f=\"ngForm\" novalidate class=\"f-form f-form--inline\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x3\">\r\n            <input type=\"text\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   id=\"quantity\"\r\n                   required\r\n                   [placeholder]=\"Quantity\"\r\n                   [(ngModel)]=\"batchNew.quantity\" />\r\n        </div>\r\n        <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n            <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\" (click)=\"save($event)\">\r\n                Add new batch\r\n            </button>\r\n        </div>\r\n    </div>\r\n</form>";
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Batch; });
+var Batch = /** @class */ (function () {
+    function Batch() {
+    }
+    return Batch;
+}());
+
+//# sourceMappingURL=batch.js.map
 
 /***/ }),
 /* 779 */
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Add new batch</h2>\r\n\r\n<form name=\"batchAddForm\" #f=\"ngForm\" novalidate class=\"f-form f-form--inline\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   id=\"quantity\"\r\n                   required\r\n                   placeholder=\"Quantity\"\r\n                   [(ngModel)]=\"batchNew.quantity\" />\r\n        </div>\r\n    </div>\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"expirationDate\" class=\"f-label\">Expiration Date</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"date\"\r\n                   class=\"f-input\"\r\n                   name=\"expirationDate\"\r\n                   id=\"expirationDate\"\r\n                   required\r\n                   placeholder=\"Expiration date\"\r\n                   [(ngModel)]=\"batchNew.expirationDate\" />\r\n        </div>\r\n    </div>\r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\" (click)=\"save($event)\">\r\n            Add new batch\r\n        </button>\r\n    </div>\r\n</form>";
+
+/***/ }),
+/* 780 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63572,7 +63599,7 @@ var BatchHistoryComponent = /** @class */ (function () {
     BatchHistoryComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "batch.history",
-            template: __webpack_require__(780)
+            template: __webpack_require__(781)
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_batch_service__["a" /* BatchService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["ActivatedRoute"]])
@@ -63583,13 +63610,13 @@ var BatchHistoryComponent = /** @class */ (function () {
 //# sourceMappingURL=batch.history.component.js.map
 
 /***/ }),
-/* 780 */
+/* 781 */
 /***/ (function(module, exports) {
 
 module.exports = "<h2>Batch history</h2>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n    </tr>\r\n</table>";
 
 /***/ }),
-/* 781 */
+/* 782 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63611,7 +63638,7 @@ var SiteFooterComponent = /** @class */ (function () {
     SiteFooterComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "footer",
-            template: __webpack_require__(782)
+            template: __webpack_require__(783)
         }),
         __metadata("design:paramtypes", [])
     ], SiteFooterComponent);
@@ -63621,13 +63648,13 @@ var SiteFooterComponent = /** @class */ (function () {
 //# sourceMappingURL=site.footer.component.js.map
 
 /***/ }),
-/* 782 */
+/* 783 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"l-w-90 ty-center\">\r\n    <p class=\"c-footer__text\">&copy; FelFel - This application is for demonstration purposes only</p>\r\n</div>";
 
 /***/ }),
-/* 783 */
+/* 784 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63649,7 +63676,7 @@ var SiteHeaderComponent = /** @class */ (function () {
     SiteHeaderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "header",
-            template: __webpack_require__(784)
+            template: __webpack_require__(785)
         }),
         __metadata("design:paramtypes", [])
     ], SiteHeaderComponent);
@@ -63659,13 +63686,13 @@ var SiteHeaderComponent = /** @class */ (function () {
 //# sourceMappingURL=site.header.component.js.map
 
 /***/ }),
-/* 784 */
+/* 785 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"l-w-90\">\r\n    <div class=\"c-header__logo\">\r\n        <a [routerLink]=\"['/welcome']\" class=\"c-header__logo-link\">\r\n            <img alt=\"FELFEL Logo\" class=\"c-header__logo-image\" src=\"/images/felfel-logo.svg\">\r\n        </a>\r\n    </div>        \r\n\r\n    <h1 class=\"c-header__title-text ty-uppercase\">\r\n        Inventory Management\r\n    </h1>\r\n</div>";
 
 /***/ }),
-/* 785 */
+/* 786 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63687,7 +63714,7 @@ var SiteMenuComponent = /** @class */ (function () {
     SiteMenuComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "site-menu",
-            template: __webpack_require__(786)
+            template: __webpack_require__(787)
         }),
         __metadata("design:paramtypes", [])
     ], SiteMenuComponent);
@@ -63697,13 +63724,13 @@ var SiteMenuComponent = /** @class */ (function () {
 //# sourceMappingURL=site.menu.component.js.map
 
 /***/ }),
-/* 786 */
+/* 787 */
 /***/ (function(module, exports) {
 
 module.exports = "<ul class=\"c-menu u-reset-list\">\r\n    <li class=\"c-menu__item\" [routerLinkActive]=\"['c-menu__item--active']\">\r\n        <a class=\"c-menu__item-link lf-row lf-align-center lf-justify-center\" [routerLink]=\"['/batches']\">\r\n            <div class=\"lf-row lf-align-items-center\">\r\n                <span class=\"c-menu__item-text\">Batches</span>\r\n            </div>\r\n        </a>\r\n    </li>\r\n    <li class=\"c-menu__item\" [routerLinkActive]=\"['c-menu__item--active']\">\r\n        <a class=\"c-menu__item-link lf-row lf-align-center lf-justify-center\" [routerLink]=\"['/batch-add']\">\r\n            <div class=\"lf-row lf-align-items-center\">\r\n                <span class=\"c-menu__item-text\">Add new batch</span>\r\n            </div>\r\n        </a>\r\n    </li>\r\n</ul>";
 
 /***/ }),
-/* 787 */
+/* 788 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63725,7 +63752,7 @@ var WelcomeComponent = /** @class */ (function () {
     WelcomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "welcome",
-            template: __webpack_require__(788)
+            template: __webpack_require__(789)
         }),
         __metadata("design:paramtypes", [])
     ], WelcomeComponent);
@@ -63735,13 +63762,13 @@ var WelcomeComponent = /** @class */ (function () {
 //# sourceMappingURL=welcome.component.js.map
 
 /***/ }),
-/* 788 */
+/* 789 */
 /***/ (function(module, exports) {
 
 module.exports = "<h2>Welcome to FelFel Inventory Management</h2>\r\n<p>Please use the menu on the left to navigate around.</p>";
 
 /***/ }),
-/* 789 */
+/* 790 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

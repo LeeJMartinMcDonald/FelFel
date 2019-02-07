@@ -22,7 +22,6 @@ export class BatchAddComponent implements OnInit{
     }
 
     save($event: any) {
-        console.log(this.batchNew);
         this.batchService.addNewBatch(this.batchNew).subscribe(result => {
             this.batchNew = new BatchNew();
             this.batchNew.quantity = 0;
