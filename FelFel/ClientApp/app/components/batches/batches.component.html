@@ -15,7 +15,7 @@
             Quantity
         </th>
         <th>
-            History
+            Options
         </th>
     </tr>
     <tr *ngFor="let batch of batches; let index = index;" class="br-b-1">
@@ -23,7 +23,16 @@
         <td>{{batch.checkedInDate | date:'dd/MM/yyyy'}}</td>
         <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>
         <td>{{batch.quantity}}</td>
-        <td><a [routerLink]="['/batch-history', batch.id]">History</a></td>
+        <td class="tb-options">
+            <ul class="u-reset-list lf-row">
+                <li class="lf-1x2 l-pr-2">
+                    <a [routerLink]="['/batch-update', batch.id]">Update stock</a>
+                </li>
+                <li class="lf-1x2">
+                    <a [routerLink]="['/batch-history', batch.id]">History</a>
+                </li>
+            </ul>
+        </td>
     </tr>
 </table>
 <div *ngIf="batches.length == 0">
