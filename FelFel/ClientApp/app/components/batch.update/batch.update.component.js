@@ -35,8 +35,17 @@ var BatchUpdateComponent = /** @class */ (function () {
         form.reset();
     };
     BatchUpdateComponent.prototype.save = function ($event) {
+        var _this = this;
         this.batchItemSubmitted = true;
-        //this.batchService.addBatchItem(this.batchItem).subscribe();
+        this.batchService.addBatchItem(this.batchItem).subscribe(function (result) {
+            _this.reloadBatchDetails();
+        });
+    };
+    BatchUpdateComponent.prototype.reloadBatchDetails = function () {
+        var _this = this;
+        this.batchService.loadBatch(this.batchId).subscribe(function (batch) {
+            _this.batch = batch;
+        });
     };
     BatchUpdateComponent = __decorate([
         Component({

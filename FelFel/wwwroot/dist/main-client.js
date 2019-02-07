@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f328393ed680d801f9d7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "881937f3c6b5584f8471"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -5083,6 +5083,13 @@ var BatchService = /** @class */ (function (_super) {
         return this.httpClient.post(this.appConfig.apiBatchUrl + "AddNewBatch", model, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
             _this.logSuccess("New batch added");
         }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("AddNewBatch")));
+    };
+    BatchService.prototype.addBatchItem = function (model) {
+        var _this = this;
+        this.logSuccess("Adding a new batch item...");
+        return this.httpClient.post(this.appConfig.apiBatchUrl + "AddBatchItem", model, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
+            _this.logSuccess("New batch item added");
+        }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("AddBatchItem")));
     };
     BatchService.prototype.getBatch = function (batchId) {
         this.loadBatch(batchId).subscribe();
@@ -63680,8 +63687,17 @@ var BatchUpdateComponent = /** @class */ (function () {
         form.reset();
     };
     BatchUpdateComponent.prototype.save = function ($event) {
+        var _this = this;
         this.batchItemSubmitted = true;
-        //this.batchService.addBatchItem(this.batchItem).subscribe();
+        this.batchService.addBatchItem(this.batchItem).subscribe(function (result) {
+            _this.reloadBatchDetails();
+        });
+    };
+    BatchUpdateComponent.prototype.reloadBatchDetails = function () {
+        var _this = this;
+        this.batchService.loadBatch(this.batchId).subscribe(function (batch) {
+            _this.batch = batch;
+        });
     };
     BatchUpdateComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -63714,7 +63730,7 @@ var BatchItem = /** @class */ (function () {
 /* 784 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Update batch</h2>\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   min=\"1\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
+module.exports = "<h2>Update batch</h2>\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 785 */

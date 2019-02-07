@@ -86,6 +86,20 @@ export class BatchService extends BaseService {
         );
     }
 
+    addBatchItem(model: BatchItem): Observable<any> {
+        this.logSuccess("Adding a new batch item...");
+        return this.httpClient.post<any>(
+            `${this.appConfig.apiBatchUrl}AddBatchItem`,
+            model,
+            httpOptions
+        ).pipe(
+            tap(_ => {
+                this.logSuccess("New batch item added");
+            }),
+            catchError(this.handleError<any>("AddBatchItem"))
+        );
+    }
+
     getBatch(batchId: number): Observable<Batch> {
         this.loadBatch(batchId).subscribe();
 

@@ -13,7 +13,6 @@
                    [(ngModel)]="batchItem.quantity"
                    #quantity="ngModel"
                    placeholder="Quantity"
-                   min="1"
                    required />
             <div *ngIf="quantity.invalid">
                 <div *ngIf="quantity.errors.required" class="u-required u-required--before">required</div>

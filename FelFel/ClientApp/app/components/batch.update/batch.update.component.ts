@@ -44,6 +44,14 @@ export class BatchUpdateComponent implements OnInit{
 
     save($event: any) {
         this.batchItemSubmitted = true;
-        //this.batchService.addBatchItem(this.batchItem).subscribe();
+        this.batchService.addBatchItem(this.batchItem).subscribe(result => {
+            this.reloadBatchDetails();
+        });
+    }
+
+    reloadBatchDetails() {
+        this.batchService.loadBatch(this.batchId).subscribe(batch => {
+            this.batch = batch
+        });
     }
 }

@@ -69,6 +69,13 @@ var BatchService = /** @class */ (function (_super) {
             _this.logSuccess("New batch added");
         }), catchError(this.handleError("AddNewBatch")));
     };
+    BatchService.prototype.addBatchItem = function (model) {
+        var _this = this;
+        this.logSuccess("Adding a new batch item...");
+        return this.httpClient.post(this.appConfig.apiBatchUrl + "AddBatchItem", model, httpOptions).pipe(tap(function (_) {
+            _this.logSuccess("New batch item added");
+        }), catchError(this.handleError("AddBatchItem")));
+    };
     BatchService.prototype.getBatch = function (batchId) {
         this.loadBatch(batchId).subscribe();
         return this.batchSubject.asObservable();
