@@ -7,24 +7,20 @@ namespace Data.Queries
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ProjectEntities _context;
+        private IBatchRepository _batchRepository;
+        private IBatchItemRepository _batchItemRepository;
+        private IBatchUpdateReasonRepository _batchUpdateReasonRepository;
 
         public UnitOfWork(
-            ProjectEntities context,
-            IBatchRepository batchRepository,
-            IBatchItemRepository batchItemRepository,
-            IBatchUpdateReasonRepository BatchUpdateReasonRepository
+            ProjectEntities context
         )
         {
-            // TODO: Refactor - remove setting of new repositories in the constructor - move to in the get methods of each - remove injection
             _context = context;
-            BatchRepository = new BatchRepository(context);
-            BatchItemRepository = new BatchItemRepository(context);
-            BatchUpdateReasonRepository = new BatchUpdateReasonRepository(context);
         }
 
-        public IBatchRepository BatchRepository { get; }
-        public IBatchItemRepository BatchItemRepository { get; }
-        public IBatchUpdateReasonRepository BatchUpdateReasonRepository { get; }
+        public IBatchRepository BatchRepository => _batchRepository ?? new BatchRepository(_context);
+        public IBatchItemRepository BatchItemRepository => _batchItemRepository ?? new BatchItemRepository(_context);
+        public IBatchUpdateReasonRepository BatchUpdateReasonRepository => _batchUpdateReasonRepository ?? new BatchUpdateReasonRepository(_context);
 
         public int Save()
         {
