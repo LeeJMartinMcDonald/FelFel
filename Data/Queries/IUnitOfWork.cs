@@ -8,6 +8,7 @@ namespace Data.Queries
         IBatchRepository BatchRepository { get; }
         IBatchItemRepository BatchItemRepository { get; }
         IBatchUpdateReasonRepository BatchUpdateReasonRepository { get; }
+        IProductRepository ProductRepository { get; }
 
         int Save();
         Task<int> SaveAsync();
