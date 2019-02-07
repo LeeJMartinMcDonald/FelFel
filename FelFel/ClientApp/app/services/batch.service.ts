@@ -161,6 +161,8 @@ export class BatchService extends BaseService {
     }
 
     getFreshness(batch: Batch): string {
+        // TODO: Refactor - move date casting into service when data is retrieved
+
         var currentDate: Date = new Date();
         var expirationDate: Date = new Date(batch.expirationDate);
         var expiringDate: Date = new Date(expirationDate);

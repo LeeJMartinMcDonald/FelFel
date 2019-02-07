@@ -112,6 +112,7 @@ var BatchService = /** @class */ (function (_super) {
         }), catchError(this.handleError("GetBatch/" + batchId)));
     };
     BatchService.prototype.getFreshness = function (batch) {
+        // TODO: Refactor - move date casting into service when data is retrieved
         var currentDate = new Date();
         var expirationDate = new Date(batch.expirationDate);
         var expiringDate = new Date(expirationDate);
