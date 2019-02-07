@@ -82,7 +82,8 @@ namespace Application.Services
             var result = batches.Select(x => new BatchItem
             {
                 Id = x.Id,
-                Quantity = x.Quantity
+                Quantity = x.Quantity,
+                Reason = x.BatchUpdateReason.Reason
             });
 
             return result;

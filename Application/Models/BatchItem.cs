@@ -12,6 +12,9 @@ namespace Application.Models
         [DataMember(Name = "quantity")]
         public int Quantity { get; set; }
 
+        [DataMember(Name = "reason")]
+        public string Reason { get; set; }
+
         [DataMember(Name = "batchId")]
         public long BatchId { get; set; }
     }

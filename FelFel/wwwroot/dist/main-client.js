@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5f457d60462604c9cae5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bfb6189046f3fca2bf31"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -63641,7 +63641,7 @@ var BatchHistoryComponent = /** @class */ (function () {
 /* 781 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Batch history</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-update', batchId]\">Batch update</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n    </tr>\r\n</table>";
+module.exports = "<h2>Batch history</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-update', batchId]\">Batch update</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<table class=\"tb-data-table\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            Reasons\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batchItem of batchItems; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batchItem.id}}</td>\r\n        <td>{{batchItem.quantity}}</td>\r\n        <td>{{batchItem.reason}}</td>\r\n    </tr>\r\n</table>";
 
 /***/ }),
 /* 782 */
