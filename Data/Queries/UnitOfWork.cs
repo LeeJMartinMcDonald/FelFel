@@ -15,8 +15,8 @@ namespace Data.Queries
         )
         {
             _context = context;
-            BatchRepository = batchRepository;
-            BatchItemRepository = batchItemRepository;
+            BatchRepository = new BatchRepository(context);
+            BatchItemRepository = new BatchItemRepository(context);
         }
 
         public IBatchRepository BatchRepository { get; }
