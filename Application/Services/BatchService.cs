@@ -15,19 +15,6 @@ namespace Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Add(Models.Batch model)
-        {
-            // idealy use an auto-mapper
-            var batch = new Entities.Batch
-            {
-                ExpirationDate = model.ExpirationDate,
-                ExpiringTime = model.ExpiringTime,
-                CheckedInDate = model.CheckedInDate,
-            };
-
-            _unitOfWork.BatchRepository.Add(batch);
-        }
-
         public void AddNewBatch(BatchNew model)
         {
             // idealy use an auto-mapper
