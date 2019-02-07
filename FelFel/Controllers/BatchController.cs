@@ -63,7 +63,7 @@ namespace FelFel.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBatches()
         {
-            var batches = await _batchService.Get();
+            var batches = await _batchService.GetBatches();
             if (batches != null)
             {
                 return Ok(batches);

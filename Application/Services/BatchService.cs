@@ -62,7 +62,7 @@ namespace Application.Services
             return result;
         }
 
-        public async Task<IEnumerable<Batch>> Get()
+        public async Task<IEnumerable<Batch>> GetBatches()
         {
             var batches = await _unitOfWork.BatchRepository.Get();
             var result = batches.Select(x => new Batch {

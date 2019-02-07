@@ -9,8 +9,7 @@ namespace Application.Services
         void AddNewBatch(BatchNew model);
         void AddBatchItem(BatchItem model);
 
-        // TODO: Refactor method name to GetBatches
-        Task<IEnumerable<Batch>> Get();
+        Task<IEnumerable<Batch>> GetBatches();
         Task<Batch> GetBatch(long id);
 
         Task<IEnumerable<BatchItem>> GetBatchItems(long batchId);
