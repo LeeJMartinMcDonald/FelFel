@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2abd3b105ade7f212286"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b2b4975d1d2412e13a1f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -63992,7 +63992,7 @@ var ProductInventoryByBatch = /** @class */ (function () {
 /* 790 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Product inventory by batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/products']\">Back to products</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Product: {{product.name}}</p>\r\n\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 1\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Expiration Date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.expirationDate}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n    </tr>\r\n</table>\r\n\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
+module.exports = "<h2>Product inventory by batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/products']\">Back to products</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Product: {{product.name}}</p>\r\n\r\n<h3>Batches</h3>\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 1\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Expiration Date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.expirationDate}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n    </tr>\r\n</table>\r\n\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
 
 /***/ }),
 /* 791 */
