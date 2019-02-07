@@ -11,7 +11,7 @@ namespace Application.Services
 
         Task<IEnumerable<Batch>> GetBatches();
         Task<Batch> GetBatch(long id);
-
         Task<IEnumerable<BatchItem>> GetBatchItems(long batchId);
+        Task<IEnumerable<BatchUpdateReason>> GetBatchUpdateReasons();
     }
 }

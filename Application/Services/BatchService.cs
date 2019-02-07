@@ -87,5 +87,17 @@ namespace Application.Services
 
             return result;
         }
+
+        public async Task<IEnumerable<BatchUpdateReason>> GetBatchUpdateReasons()
+        {
+            var reasons = await _unitOfWork.BatchUpdateReasonRepository.Get();
+            var result = reasons.Select(x => new BatchUpdateReason
+            {
+                Id = x.Id,
+                Reason = x.Reason
+            });
+
+            return result;
+        }
     }
 }

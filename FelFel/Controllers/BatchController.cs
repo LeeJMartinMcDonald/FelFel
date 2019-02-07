@@ -83,5 +83,17 @@ namespace FelFel.Controllers
 
             return StatusCode(500, $"Unable to retrieve batch items for batch: {id}.");
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetBatchUpdateReasons()
+        {
+            var reasons = await _batchService.GetBatchUpdateReasons();
+            if (reasons != null)
+            {
+                return Ok(reasons);
+            }
+
+            return StatusCode(500, "Unable to retrieve batches.");
+        }
     }
 }

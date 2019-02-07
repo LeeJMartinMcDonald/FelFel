@@ -11,16 +11,20 @@ namespace Data.Queries
         public UnitOfWork(
             ProjectEntities context,
             IBatchRepository batchRepository,
-            IBatchItemRepository batchItemRepository
+            IBatchItemRepository batchItemRepository,
+            IBatchUpdateReasonRepository BatchUpdateReasonRepository
         )
         {
+            // TODO: Refactor - remove setting of new repositories in the constructor - move to in the get methods of each - remove injection
             _context = context;
             BatchRepository = new BatchRepository(context);
             BatchItemRepository = new BatchItemRepository(context);
+            BatchUpdateReasonRepository = new BatchUpdateReasonRepository(context);
         }
 
         public IBatchRepository BatchRepository { get; }
         public IBatchItemRepository BatchItemRepository { get; }
+        public IBatchUpdateReasonRepository BatchUpdateReasonRepository { get; }
 
         public int Save()
         {
