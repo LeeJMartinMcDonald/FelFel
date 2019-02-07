@@ -22,6 +22,7 @@ import { BatchesComponent } from "./components/batches/batches.component";
 import { BatchAddComponent } from "./components/batch.add/batch.add.component";
 import { BatchHistoryComponent } from "./components/batch.history/batch.history.component";
 import { BatchUpdateComponent } from "./components/batch.update/batch.update.component";
+import { ProductComponent } from "./components/products/products.component";
 import { SiteFooterComponent } from "./components/site.footer/site.footer.component";
 import { SiteHeaderComponent } from "./components/site.header/site.header.component";
 import { SiteMenuComponent } from "./components/site.menu/site.menu.component";
@@ -40,6 +41,7 @@ import { ExternalResourceService } from "./services/external.resource.service";
         BatchAddComponent,
         BatchHistoryComponent,
         BatchUpdateComponent,
+        ProductComponent,
         SiteFooterComponent,
         SiteHeaderComponent,
         SiteMenuComponent,
@@ -64,6 +66,7 @@ import { ExternalResourceService } from "./services/external.resource.service";
                 { path: "batch-add", component: BatchAddComponent },
                 { path: "batch-history/:id", component: BatchHistoryComponent },
                 { path: "batch-update/:id", component: BatchUpdateComponent },
+                { path: "products", component: ProductComponent },
                 { path: "**", redirectTo: "welcome" }
             ],
             {

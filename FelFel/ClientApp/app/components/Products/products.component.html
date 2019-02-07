@@ -1,0 +1,29 @@
+<h2>Products</h2>
+
+<table class="tb-data-table" *ngIf="products.length > 0">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+    <tr *ngFor="let product of products; let index = index;" class="br-b-1">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td class="tb-options">
+            <ul class="u-reset-list lf-row">
+                <li class="lf-1x2">
+                    <a [routerLink]="['/batch-inventory', product.id]">Inventory by batches</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div *ngIf="products.length == 0">
+    <p>There are no products to display.</p>
+</div>
