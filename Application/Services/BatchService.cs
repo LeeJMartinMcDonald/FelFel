@@ -80,7 +80,8 @@ namespace Application.Services
                 CheckedInDate = x.CheckedInDate,
                 ExpirationDate = x.ExpirationDate,
                 ExpiringTime = x.ExpiringTime,
-                Quantity = x.BatchItems.Sum(bi => bi.Quantity)
+                Quantity = x.BatchItems.Sum(bi => bi.Quantity),
+                Product = x.Product.Name
             });
 
             return result;

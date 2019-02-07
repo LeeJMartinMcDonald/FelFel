@@ -16,6 +16,7 @@ namespace Data.Queries
         {
             return await _context.Batches
                 .Include(x => x.BatchItems)
+                .Include(x => x.Product)
                 .ToListAsync()
                 ;
         }

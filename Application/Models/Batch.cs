@@ -21,6 +21,9 @@ namespace Application.Models
         [DataMember(Name = "orderId")]
         public int OrderId { get; set; }
 
+        [DataMember(Name = "product")]
+        public string Product { get; set; }
+
         [DataMember(Name = "productId")]
         public int ProductId { get; set; }
 

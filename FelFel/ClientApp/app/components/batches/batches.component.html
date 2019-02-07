@@ -12,6 +12,9 @@
             Expiration date
         </th>
         <th>
+            Product
+        </th>
+        <th>
             Quantity
         </th>
         <th>
@@ -22,6 +25,7 @@
         <td>{{batch.id}}</td>
         <td>{{batch.checkedInDate | date:'dd/MM/yyyy'}}</td>
         <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{batch.product}}</td>
         <td>{{batch.quantity}}</td>
         <td class="tb-options">
             <ul class="u-reset-list lf-row">
