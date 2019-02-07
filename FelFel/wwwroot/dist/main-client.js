@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "28c497d9ec1706a0eb64"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "65061ef53ef93fc3612e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -63463,7 +63463,7 @@ var LoadingStatus;
 /* 775 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Batches</h2>\r\n\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 0\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Checked in date\r\n        </th>\r\n        <th>\r\n            Expiration date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            History\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.checkedInDate | date:'dd/MM/yyy HH:mm'}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyy HH:mm'}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n        <td><a [routerLink]=\"['/batch-history', batch.id]\">History</a></td>\r\n    </tr>\r\n</table>\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
+module.exports = "<h2>Batches</h2>\r\n\r\n<table class=\"tb-data-table\" *ngIf=\"batches.length > 0\">\r\n    <tr>\r\n        <th>\r\n            ID\r\n        </th>\r\n        <th>\r\n            Checked in date\r\n        </th>\r\n        <th>\r\n            Expiration date\r\n        </th>\r\n        <th>\r\n            Quantity\r\n        </th>\r\n        <th>\r\n            History\r\n        </th>\r\n    </tr>\r\n    <tr *ngFor=\"let batch of batches; let index = index;\" class=\"br-b-1\">\r\n        <td>{{batch.id}}</td>\r\n        <td>{{batch.checkedInDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.expirationDate | date:'dd/MM/yyyy'}}</td>\r\n        <td>{{batch.quantity}}</td>\r\n        <td><a [routerLink]=\"['/batch-history', batch.id]\">History</a></td>\r\n    </tr>\r\n</table>\r\n<div *ngIf=\"batches.length == 0\">\r\n    <p>There are no batches to display.</p>\r\n</div>";
 
 /***/ }),
 /* 776 */
@@ -63496,6 +63496,7 @@ var BatchAddComponent = /** @class */ (function () {
     };
     BatchAddComponent.prototype.save = function ($event) {
         var _this = this;
+        this.batchNew.checkedInDate = new Date();
         this.batchService.addNewBatch(this.batchNew).subscribe(function (result) {
             _this.batchNew = new __WEBPACK_IMPORTED_MODULE_1__models_batch_new__["a" /* BatchNew */]();
             _this.batchNew.quantity = 0;

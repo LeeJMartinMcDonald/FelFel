@@ -20,6 +20,7 @@ var BatchAddComponent = /** @class */ (function () {
     };
     BatchAddComponent.prototype.save = function ($event) {
         var _this = this;
+        this.batchNew.checkedInDate = new Date();
         this.batchService.addNewBatch(this.batchNew).subscribe(function (result) {
             _this.batchNew = new BatchNew();
             _this.batchNew.quantity = 0;
