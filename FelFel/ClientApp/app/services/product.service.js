@@ -43,7 +43,7 @@ var ProductService = /** @class */ (function (_super) {
     };
     ProductService.prototype.loadProducts = function () {
         var _this = this;
-        return this.httpClient.get(this.appConfig.apiBatchUrl + "GetProducts", httpOptions)
+        return this.httpClient.get(this.appConfig.apiProductUrl + "GetProducts", httpOptions)
             .pipe(tap(function (_) {
             _this.productSubject.next(_);
         }), catchError(this.handleError("GetProducts")));

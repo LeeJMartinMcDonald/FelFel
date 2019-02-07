@@ -38,7 +38,7 @@ export class ProductService extends BaseService {
 
     loadProducts(): Observable<Product[]> {
         return this.httpClient.get<Product[]>(
-            `${this.appConfig.apiBatchUrl}GetProducts`,
+            `${this.appConfig.apiProductUrl}GetProducts`,
             httpOptions)
             .pipe(
                 tap(_ => {
