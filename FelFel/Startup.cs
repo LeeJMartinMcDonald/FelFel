@@ -35,6 +35,7 @@ namespace FelFel
 
             // Services
             services.AddScoped<IBatchService, BatchService>();
+            services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<IProductService, ProductService>();
 
             services.AddMvc();
