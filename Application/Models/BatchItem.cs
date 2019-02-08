@@ -20,5 +20,8 @@ namespace Application.Models
 
         [DataMember(Name = "batchId")]
         public long BatchId { get; set; }
+
+        [DataMember(Name = "locationId")]
+        public long LocationId { get; set; }
     }
 }
