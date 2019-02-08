@@ -17,6 +17,7 @@ namespace Entities
         // TODO: Refactor - should be of type date
         public int Date { get; set; }
 
+        public Location Location { get; set; }
         public Batch Batch { get; set; }
         public Customer Customer { get; set; }
         public BatchUpdateReason BatchUpdateReason { get; set;}
