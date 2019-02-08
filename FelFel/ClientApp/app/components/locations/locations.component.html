@@ -1,0 +1,23 @@
+<h2>Locations</h2>
+
+<table class="tb-data-table" *ngIf="locations.length > 0">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Quantity
+        </th>
+    </tr>
+    <tr *ngFor="let location of locations; let index = index;" class="br-b-1">
+        <td>{{location.id}}</td>
+        <td>{{location.name}}</td>
+        <td>{{location.quantity}}</td>
+    </tr>
+</table>
+<div *ngIf="locations.length == 0">
+    <p>There are no locations to display.</p>
+</div>

@@ -23,6 +23,7 @@ import { BatchAddComponent } from "./components/batch.add/batch.add.component";
 import { BatchHistoryComponent } from "./components/batch.history/batch.history.component";
 import { BatchUpdateComponent } from "./components/batch.update/batch.update.component";
 import { FreshnessComponent } from "./components/freshness/freshness.component";
+import { LocationsComponent } from "./components/locations/locations.component";
 import { ProductComponent } from "./components/products/products.component";
 import { ProductInventoryByBatch } from "./components/product.inventory.by.batch/product.inventory.by.batch.component";
 import { SiteFooterComponent } from "./components/site.footer/site.footer.component";
@@ -45,6 +46,7 @@ import { ExternalResourceService } from "./services/external.resource.service";
         BatchHistoryComponent,
         BatchUpdateComponent,
         FreshnessComponent,
+        LocationsComponent,
         ProductComponent,
         ProductInventoryByBatch,
         SiteFooterComponent,
@@ -72,6 +74,7 @@ import { ExternalResourceService } from "./services/external.resource.service";
                 { path: "batch-history/:id", component: BatchHistoryComponent },
                 { path: "batch-update/:id", component: BatchUpdateComponent },
                 { path: "freshness", component: FreshnessComponent },
+                { path: "locations", component: LocationsComponent },
                 { path: "products", component: ProductComponent },
                 { path: "product-inventory-by-batch/:id", component: ProductInventoryByBatch },
                 { path: "**", redirectTo: "welcome" }

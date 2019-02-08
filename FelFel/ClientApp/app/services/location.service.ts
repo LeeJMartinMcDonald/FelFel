@@ -21,6 +21,7 @@ const httpOptions = {
 @Injectable()
 export class LocationService extends BaseService {
     private locationsSubject = new BehaviorSubject<Location[]>(new Array<Location>());
+    private locationsWithQuantitySubject = new BehaviorSubject<Location[]>(new Array<Location>());
 
     constructor(
         private readonly appConfig: AppConfig,
@@ -47,5 +48,24 @@ export class LocationService extends BaseService {
             ),
             catchError(this.handleError<any>(`GetLocations`))
         );
+    }
+
+    getLocationsWithQuantity(): Observable<Location[]> {
+        this.loadLocationsWithQuantity().subscribe();
+
+        return this.locationsWithQuantitySubject.asObservable();
+    }
+
+    loadLocationsWithQuantity(): Observable<Location[]> {
+        return this.httpClient.get<Location[]>(
+            `${this.appConfig.apiLocationUrl}GetLocationsWithQuantity`,
+            httpOptions)
+            .pipe(
+            tap(_ => {
+                this.locationsWithQuantitySubject.next(_);
+            }
+            ),
+            catchError(this.handleError<any>(`GetLocationsWithQuantity`))
+            );
     }
 }

@@ -35,6 +35,7 @@ var LocationService = /** @class */ (function (_super) {
         _this.alertService = alertService;
         _this.httpClient = httpClient;
         _this.locationsSubject = new BehaviorSubject(new Array());
+        _this.locationsWithQuantitySubject = new BehaviorSubject(new Array());
         return _this;
     }
     LocationService.prototype.getLocations = function () {
@@ -47,6 +48,17 @@ var LocationService = /** @class */ (function (_super) {
             .pipe(tap(function (_) {
             _this.locationsSubject.next(_);
         }), catchError(this.handleError("GetLocations")));
+    };
+    LocationService.prototype.getLocationsWithQuantity = function () {
+        this.loadLocationsWithQuantity().subscribe();
+        return this.locationsWithQuantitySubject.asObservable();
+    };
+    LocationService.prototype.loadLocationsWithQuantity = function () {
+        var _this = this;
+        return this.httpClient.get(this.appConfig.apiLocationUrl + "GetLocationsWithQuantity", httpOptions)
+            .pipe(tap(function (_) {
+            _this.locationsWithQuantitySubject.next(_);
+        }), catchError(this.handleError("GetLocationsWithQuantity")));
     };
     LocationService = __decorate([
         Injectable(),
