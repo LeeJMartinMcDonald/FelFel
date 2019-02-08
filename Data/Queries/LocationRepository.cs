@@ -18,5 +18,12 @@ namespace Data.Queries
                 .ToListAsync()
                 ;
         }
+
+        public async Task<Location> Get(long id)
+        {
+            return await _context.Locations
+                .FirstOrDefaultAsync(x => x.Id == id)
+                ;
+        }
     }
 }

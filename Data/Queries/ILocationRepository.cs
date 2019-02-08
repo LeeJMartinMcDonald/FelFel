@@ -8,5 +8,7 @@ namespace Data.Queries
     public interface ILocationRepository : IRepo<Location>
     {
         Task<IEnumerable<Location>> Get();
+        Task<Location> Get(long id);
+
     }
 }
