@@ -15,6 +15,7 @@ namespace Data.Queries
         public async Task<IEnumerable<Location>> Get()
         {
             return await _context.Locations
+                .Include(x => x.BatchItems)
                 .ToListAsync()
                 ;
         }
