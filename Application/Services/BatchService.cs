@@ -21,6 +21,7 @@ namespace Application.Services
             // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
             var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(1).Result;
             var product = _unitOfWork.ProductRepository.Get(model.ProductId).Result;
+            var location = _unitOfWork.LocationRepository.Get(1).Result;
 
             // idealy use an auto-mapper
             var batch = new Entities.Batch
@@ -34,7 +35,8 @@ namespace Application.Services
             batch.BatchItems.Add(new Entities.BatchItem
             {
                 BatchUpdateReason = batchUpdateReason,
-                Quantity = model.Quantity
+                Quantity = model.Quantity,
+                Location = location
             });
 
             _unitOfWork.BatchRepository.Add(batch);
