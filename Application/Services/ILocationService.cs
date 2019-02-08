@@ -7,5 +7,6 @@ namespace Application.Services
     public interface ILocationService
     {
         Task<IEnumerable<Location>> GetLocations();
+        Task<IEnumerable<Location>> GetLocationsWithQuantity();
     }
 }

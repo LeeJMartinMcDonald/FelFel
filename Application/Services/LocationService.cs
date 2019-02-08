@@ -25,5 +25,18 @@ namespace Application.Services
 
             return result;
         }
+
+        public async Task<IEnumerable<Location>> GetLocationsWithQuantity()
+        {
+            var locations = await _unitOfWork.LocationRepository.Get();
+            var result = locations.Select(x => new Location
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Quantity = x.BatchItems.Sum(batchItem => batchItem.Quantity)
+            });
+
+            return result;
+        }
     }
 }
