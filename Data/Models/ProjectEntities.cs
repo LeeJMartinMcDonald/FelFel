@@ -34,6 +34,7 @@ namespace Data.Models
         public virtual DbSet<BatchItem> BatchItems { get; set; }
         public virtual DbSet<BatchUpdateReason> BatchUpdateReasons { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
