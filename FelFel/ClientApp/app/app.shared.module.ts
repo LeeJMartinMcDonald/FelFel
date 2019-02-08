@@ -33,6 +33,7 @@ import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { AlertService } from "./services/alert.service";
 import { BatchService } from "./services/batch.service";
 import { ProductService } from "./services/product.service";
+import { LocationService } from "./services/location.service";
 import { ExternalResourceService } from "./services/external.resource.service";
 
 @NgModule({
@@ -86,7 +87,8 @@ import { ExternalResourceService } from "./services/external.resource.service";
         AlertService,
         BatchService,
         ExternalResourceService,
-        ProductService
+        ProductService,
+        LocationService
     ]
 })
 export class AppModuleShared {}
