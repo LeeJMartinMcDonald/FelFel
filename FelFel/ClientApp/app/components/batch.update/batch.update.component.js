@@ -11,9 +11,11 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { BatchItem } from "../../models/batch.item";
 import { BatchService } from "../../services/batch.service";
+import { LocationService } from "../../services/location.service";
 var BatchUpdateComponent = /** @class */ (function () {
-    function BatchUpdateComponent(batchService, route) {
+    function BatchUpdateComponent(batchService, locationService, route) {
         this.batchService = batchService;
+        this.locationService = locationService;
         this.route = route;
         this.batchItem = new BatchItem();
         this.batchItemSubmitted = false;
@@ -29,6 +31,9 @@ var BatchUpdateComponent = /** @class */ (function () {
         });
         this.batchService.getBatchUpdateReasons().subscribe(function (reasons) {
             _this.batchUpdateReasons = reasons;
+        });
+        this.locationService.getLocations().subscribe(function (locations) {
+            _this.locations = locations;
         });
     };
     BatchUpdateComponent.prototype.reset = function (form) {
@@ -56,6 +61,7 @@ var BatchUpdateComponent = /** @class */ (function () {
             template: require("./batch.update.component.html")
         }),
         __metadata("design:paramtypes", [BatchService,
+            LocationService,
             ActivatedRoute])
     ], BatchUpdateComponent);
     return BatchUpdateComponent;

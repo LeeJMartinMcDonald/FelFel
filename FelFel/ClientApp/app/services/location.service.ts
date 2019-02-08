@@ -38,7 +38,7 @@ export class LocationService extends BaseService {
 
     loadLocations(): Observable<Location[]> {
         return this.httpClient.get<Location[]>(
-            `${this.appConfig.apiProductUrl}GetLocations`,
+            `${this.appConfig.apiLocationUrl}GetLocations`,
             httpOptions)
             .pipe(
                 tap(_ => {

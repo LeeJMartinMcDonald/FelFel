@@ -34,21 +34,41 @@
             <label for="reasonId" class="f-label">Reason</label>
         </div>
         <div class="lf-3x4">
-            <select
-                    name="reason"
+            <select name="reason"
                     [(ngModel)]="batchItem.reasonId"
                     #reason="ngModel"
                     placeholder="Reason"
                     required>
                 <option value="0">--Please select--</option>
-                <option 
-                    *ngFor="let batchUpdateReason of batchUpdateReasons" 
-                    value="{{batchUpdateReason.id}}">
+                <option *ngFor="let batchUpdateReason of batchUpdateReasons"
+                        value="{{batchUpdateReason.id}}">
                     {{batchUpdateReason.reason}}
                 </option>
             </select>
             <div *ngIf="reason.invalid">
                 <div *ngIf="reason.errors.required" class="u-required u-required--before">required</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lf-row c-content-spacer">
+        <div class="lf-1x4">
+            <label for="locationId" class="f-label">Location</label>
+        </div>
+        <div class="lf-3x4">
+            <select name="location"
+                    [(ngModel)]="batchItem.locationId"
+                    #location="ngModel"
+                    placeholder="Location"
+                    required>
+                <option value="0">--Please select--</option>
+                <option *ngFor="let location of locations"
+                        value="{{location.id}}">
+                    {{location.name}}
+                </option>
+            </select>
+            <div *ngIf="location.invalid">
+                <div *ngIf="location.errors.required" class="u-required u-required--before">required</div>
             </div>
         </div>
     </div>

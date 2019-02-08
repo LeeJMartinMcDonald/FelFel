@@ -43,7 +43,7 @@ var LocationService = /** @class */ (function (_super) {
     };
     LocationService.prototype.loadLocations = function () {
         var _this = this;
-        return this.httpClient.get(this.appConfig.apiProductUrl + "GetLocations", httpOptions)
+        return this.httpClient.get(this.appConfig.apiLocationUrl + "GetLocations", httpOptions)
             .pipe(tap(function (_) {
             _this.locationsSubject.next(_);
         }), catchError(this.handleError("GetLocations")));

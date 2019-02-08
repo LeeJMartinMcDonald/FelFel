@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "78733d1d7fb171000b92"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "82990e39ea43d7551149"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -9126,6 +9126,7 @@ var AppConfig = /** @class */ (function () {
     function AppConfig() {
         this.apiBatchUrl = "/Api/Batch/";
         this.apiProductUrl = "/Api/Product/";
+        this.apiLocationUrl = "/Api/Location/";
         this.webRequestAttempts = 10;
     }
     return AppConfig;
@@ -34193,7 +34194,7 @@ var LocationService = /** @class */ (function (_super) {
     };
     LocationService.prototype.loadLocations = function () {
         var _this = this;
-        return this.httpClient.get(this.appConfig.apiProductUrl + "GetLocations", httpOptions)
+        return this.httpClient.get(this.appConfig.apiLocationUrl + "GetLocations", httpOptions)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (_) {
             _this.locationsSubject.next(_);
         }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError("GetLocations")));
@@ -63903,6 +63904,7 @@ module.exports = "<h2>Batch history</h2>\r\n<ul class=\"u-reset-list\">\r\n    <
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_batch_item__ = __webpack_require__(786);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_batch_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_location_service__ = __webpack_require__(396);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63916,9 +63918,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var BatchUpdateComponent = /** @class */ (function () {
-    function BatchUpdateComponent(batchService, route) {
+    function BatchUpdateComponent(batchService, locationService, route) {
         this.batchService = batchService;
+        this.locationService = locationService;
         this.route = route;
         this.batchItem = new __WEBPACK_IMPORTED_MODULE_2__models_batch_item__["a" /* BatchItem */]();
         this.batchItemSubmitted = false;
@@ -63934,6 +63938,9 @@ var BatchUpdateComponent = /** @class */ (function () {
         });
         this.batchService.getBatchUpdateReasons().subscribe(function (reasons) {
             _this.batchUpdateReasons = reasons;
+        });
+        this.locationService.getLocations().subscribe(function (locations) {
+            _this.locations = locations;
         });
     };
     BatchUpdateComponent.prototype.reset = function (form) {
@@ -63961,6 +63968,7 @@ var BatchUpdateComponent = /** @class */ (function () {
             template: __webpack_require__(787)
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_batch_service__["a" /* BatchService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_location_service__["a" /* LocationService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["ActivatedRoute"]])
     ], BatchUpdateComponent);
     return BatchUpdateComponent;
@@ -63986,7 +63994,7 @@ var BatchItem = /** @class */ (function () {
 /* 787 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Update batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-history', batch.id]\">Batch history</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-row c-content-spacer\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"reasonId\" class=\"f-label\">Reason</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <select\r\n                    name=\"reason\"\r\n                    [(ngModel)]=\"batchItem.reasonId\"\r\n                    #reason=\"ngModel\"\r\n                    placeholder=\"Reason\"\r\n                    required>\r\n                <option value=\"0\">--Please select--</option>\r\n                <option \r\n                    *ngFor=\"let batchUpdateReason of batchUpdateReasons\" \r\n                    value=\"{{batchUpdateReason.id}}\">\r\n                    {{batchUpdateReason.reason}}\r\n                </option>\r\n            </select>\r\n            <div *ngIf=\"reason.invalid\">\r\n                <div *ngIf=\"reason.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
+module.exports = "<h2>Update batch</h2>\r\n<ul class=\"u-reset-list\">\r\n    <li>\r\n        <a [routerLink]=\"['/batch-history', batch.id]\">Batch history</a>\r\n    </li>\r\n    <li>\r\n        <a [routerLink]=\"['/batches']\">Back to batches</a>\r\n    </li>\r\n</ul>\r\n\r\n<p>Quantity: {{batch.quantity}}</p>\r\n\r\n<form name=\"form\" #f=\"ngForm\" novalidate class=\"f-form\" (ngSubmit)=\"f.form.valid && save($event, f)\" *ngIf=\"!batchItemSubmitted\">\r\n    <div class=\"lf-row\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"quantity\" class=\"f-label\">Quantity</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <input type=\"number\"\r\n                   class=\"f-input\"\r\n                   name=\"quantity\"\r\n                   [(ngModel)]=\"batchItem.quantity\"\r\n                   #quantity=\"ngModel\"\r\n                   placeholder=\"Quantity\"\r\n                   required />\r\n            <div *ngIf=\"quantity.invalid\">\r\n                <div *ngIf=\"quantity.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-row c-content-spacer\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"reasonId\" class=\"f-label\">Reason</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <select name=\"reason\"\r\n                    [(ngModel)]=\"batchItem.reasonId\"\r\n                    #reason=\"ngModel\"\r\n                    placeholder=\"Reason\"\r\n                    required>\r\n                <option value=\"0\">--Please select--</option>\r\n                <option *ngFor=\"let batchUpdateReason of batchUpdateReasons\"\r\n                        value=\"{{batchUpdateReason.id}}\">\r\n                    {{batchUpdateReason.reason}}\r\n                </option>\r\n            </select>\r\n            <div *ngIf=\"reason.invalid\">\r\n                <div *ngIf=\"reason.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-row c-content-spacer\">\r\n        <div class=\"lf-1x4\">\r\n            <label for=\"locationId\" class=\"f-label\">Location</label>\r\n        </div>\r\n        <div class=\"lf-3x4\">\r\n            <select name=\"location\"\r\n                    [(ngModel)]=\"batchItem.locationId\"\r\n                    #location=\"ngModel\"\r\n                    placeholder=\"Location\"\r\n                    required>\r\n                <option value=\"0\">--Please select--</option>\r\n                <option *ngFor=\"let location of locations\"\r\n                        value=\"{{location.id}}\">\r\n                    {{location.name}}\r\n                </option>\r\n            </select>\r\n            <div *ngIf=\"location.invalid\">\r\n                <div *ngIf=\"location.errors.required\" class=\"u-required u-required--before\">required</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"lf-1x1 lf-row lf-justify-center c-content-spacer\">\r\n        <button [type]=\"button\" class=\"b-icon ty-uppercase b-primary\">\r\n            Update batch\r\n        </button>\r\n    </div>\r\n</form>\r\n\r\n<div *ngIf=\"batchItemSubmitted\">\r\n    <alert></alert>\r\n    <div class=\"c-content-spacer\">\r\n        <p>\r\n            <a class=\"\" [routerLink]=\"['/batches']\">\r\n                Back to batches\r\n            </a>\r\n        </p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 788 */

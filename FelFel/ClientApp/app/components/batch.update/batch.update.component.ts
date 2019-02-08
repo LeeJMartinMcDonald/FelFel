@@ -5,8 +5,10 @@ import { NgForm } from '@angular/forms';
 import { Batch } from "../../models/batch";
 import { BatchItem } from "../../models/batch.item";
 import { BatchUpdateReason } from "../../models/batch.update.reason";
+import { Location } from "../../models/location";
 
 import { BatchService } from "../../services/batch.service";
+import { LocationService } from "../../services/location.service";
 
 @Component({
     selector: "batch-update",
@@ -19,9 +21,11 @@ export class BatchUpdateComponent implements OnInit{
     batchItemSubmitted = false;
     batchId: number;
     batchUpdateReasons: BatchUpdateReason[];
+    locations: Location[];
 
     constructor(
         private readonly batchService: BatchService,
+        private readonly locationService: LocationService,
         private route: ActivatedRoute
     ) {
     }
@@ -38,6 +42,10 @@ export class BatchUpdateComponent implements OnInit{
 
         this.batchService.getBatchUpdateReasons().subscribe(reasons => {
             this.batchUpdateReasons = reasons;
+        });
+
+        this.locationService.getLocations().subscribe(locations => {
+            this.locations = locations;
         });
     }
 
