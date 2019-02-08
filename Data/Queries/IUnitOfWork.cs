@@ -8,6 +8,7 @@ namespace Data.Queries
         IBatchRepository BatchRepository { get; }
         IBatchItemRepository BatchItemRepository { get; }
         IBatchUpdateReasonRepository BatchUpdateReasonRepository { get; }
+        ILocationRepository LocationRepository { get; }
         IProductRepository ProductRepository { get; }
 
         int Save();

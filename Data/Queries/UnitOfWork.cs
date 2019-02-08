@@ -10,6 +10,7 @@ namespace Data.Queries
         private IBatchRepository _batchRepository;
         private IBatchItemRepository _batchItemRepository;
         private IBatchUpdateReasonRepository _batchUpdateReasonRepository;
+        private ILocationRepository _locationRepository;
         private IProductRepository _productRepository;
 
         public UnitOfWork(
@@ -23,6 +24,7 @@ namespace Data.Queries
         public IBatchItemRepository BatchItemRepository => _batchItemRepository ?? new BatchItemRepository(_context);
         public IBatchUpdateReasonRepository BatchUpdateReasonRepository => _batchUpdateReasonRepository ?? new BatchUpdateReasonRepository(_context);
         public IProductRepository ProductRepository => _productRepository ?? new ProductRepository(_context);
+        public ILocationRepository LocationRepository => _locationRepository ?? new LocationRepository(_context);
 
         public int Save()
         {
