@@ -108,11 +108,13 @@ namespace Application.Services
         public async Task<IEnumerable<BatchItem>> GetBatchItems(long batchId)
         {
             var batches = await _unitOfWork.BatchItemRepository.Get(batchId);
+
             var result = batches.Select(x => new BatchItem
             {
                 Id = x.Id,
                 Quantity = x.Quantity,
-                Reason = x.BatchUpdateReason.Reason
+                Reason = x.BatchUpdateReason.Reason,
+                Location = x.Location.Name
             });
 
             return result;

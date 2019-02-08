@@ -18,6 +18,7 @@ namespace Data.Queries
             return await _context.BatchItems
                 .Include(x => x.Batch)
                 .Include(x=> x.BatchUpdateReason)
+                .Include(x => x.Location)
                 .Where(x => x.Batch.Id == batchId)
                 .ToListAsync()
                 ;

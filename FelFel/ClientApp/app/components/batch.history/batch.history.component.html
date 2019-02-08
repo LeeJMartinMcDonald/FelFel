@@ -21,10 +21,14 @@
         <th>
             Reason
         </th>
+        <th>
+            Location
+        </th>
     </tr>
     <tr *ngFor="let batchItem of batchItems; let index = index;" class="br-b-1">
         <td>{{batchItem.id}}</td>
         <td>{{batchItem.quantity}}</td>
         <td>{{batchItem.reason}}</td>
+        <td>{{batchItem.location}}</td>
     </tr>
 </table>

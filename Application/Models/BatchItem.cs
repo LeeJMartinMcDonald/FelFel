@@ -23,5 +23,8 @@ namespace Application.Models
 
         [DataMember(Name = "locationId")]
         public long LocationId { get; set; }
+
+        [DataMember(Name = "location")]
+        public string Location { get; set; }
     }
 }

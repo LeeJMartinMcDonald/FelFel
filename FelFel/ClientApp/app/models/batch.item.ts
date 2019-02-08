@@ -5,4 +5,5 @@ export class BatchItem {
     reasonId: number;
     batchId: number;
     locationId: number;
+    location: string;
 }
