@@ -27,9 +27,23 @@ namespace Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // constraints to go here
+            modelBuilder.Entity<Batch2Location>(entity =>
+            {
+                entity.HasKey(e => new { e.BatchId, e.LocationId });
+
+                entity.HasOne(d => d.Batch)
+                    .WithMany(p => p.Batch2Location)
+                    .HasForeignKey(d => d.BatchId)
+                    .HasConstraintName("fk_Batch2Location_BatchId_To_Batch_BatchId");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.Batch2Location)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("fk_Batch2Location_LocationId_To_Location_LocationId");
+            });
         }
 
+        public virtual DbSet<Batch2Location> Batch2Location { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<BatchItem> BatchItems { get; set; }
         public virtual DbSet<BatchUpdateReason> BatchUpdateReasons { get; set; }

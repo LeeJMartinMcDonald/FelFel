@@ -10,6 +10,7 @@ namespace Entities
     {
         public Batch()
         {
+            Batch2Location = new HashSet<Batch2Location>();
             BatchItems = new HashSet<BatchItem>();
         }
 
@@ -21,7 +22,7 @@ namespace Entities
         public Order Order { get; set; }
         public Product Product { get; set; }
 
+        public ICollection<Batch2Location> Batch2Location { get; set; }
         public ICollection<BatchItem> BatchItems { get; set; }
-
     }
 }

@@ -6,6 +6,7 @@ namespace Entities
 {
     [Table("BatchItems")]
 
+    // TODO: Rename to BatchTransaction - table BatchTransactions
     public partial class BatchItem
     {
         public BatchItem()
