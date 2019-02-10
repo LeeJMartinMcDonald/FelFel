@@ -16,6 +16,7 @@ namespace Data.Queries
         public async Task<IEnumerable<Batch>> Get()
         {
             return await _context.Batches
+                .Include(x => x.Batch2Location)
                 .Include(x => x.BatchItems)
                 .Include(x => x.Product)
                 .ToListAsync()
@@ -24,6 +25,7 @@ namespace Data.Queries
         public async Task<IEnumerable<Batch>> Get(long id)
         {
             return await _context.Batches
+                .Include(x => x.Batch2Location)
                 .Include(x => x.BatchItems)
                 .Include(x => x.Product)
                 .Where(x => x.Product.Id == id)

@@ -102,7 +102,7 @@ namespace Application.Services
                 CheckedInDate = batch.CheckedInDate,
                 ExpirationDate = batch.ExpirationDate,
                 ExpiringTime = batch.ExpiringTime,
-                Quantity = batch.BatchItems.Sum(bi => bi.Quantity)
+                Quantity = batch.LocationQuantity(_wareHouseLocationId)
             };
 
             return result;
@@ -116,7 +116,7 @@ namespace Application.Services
                 CheckedInDate = x.CheckedInDate,
                 ExpirationDate = x.ExpirationDate,
                 ExpiringTime = x.ExpiringTime,
-                Quantity = x.BatchItems.Sum(bi => bi.Quantity),
+                Quantity = x.LocationQuantity(_wareHouseLocationId),
                 Product = x.Product.Name
             });
 
@@ -132,7 +132,7 @@ namespace Application.Services
                 CheckedInDate = x.CheckedInDate,
                 ExpirationDate = x.ExpirationDate,
                 ExpiringTime = x.ExpiringTime,
-                Quantity = x.BatchItems.Sum(bi => bi.Quantity),
+                Quantity = x.LocationQuantity(_wareHouseLocationId),
                 Product = x.Product.Name
             });
 
