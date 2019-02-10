@@ -9,6 +9,8 @@ namespace Application.Services
     public class BatchService : IBatchService
     {
         private readonly IUnitOfWork _unitOfWork;
+        // TODO: add column type to location table - map to enum - 1 being warehouse
+        private readonly long _wareHouseLocationId = 1;
 
         public BatchService(IUnitOfWork unitOfWork)
         {
@@ -17,14 +19,11 @@ namespace Application.Services
 
         public void AddNewBatch(BatchNew model)
         {
-            // TODO: add column type to location table - map to enum - 1 being warehouse
-            var wareHouseLocationId = 1;
-
             // TODO: Refactor - Create enum for reason ids
             // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
             var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(1).Result;
             var product = _unitOfWork.ProductRepository.Get(model.ProductId).Result;
-            var location = _unitOfWork.LocationRepository.Get(wareHouseLocationId).Result;
+            var location = _unitOfWork.LocationRepository.Get(_wareHouseLocationId).Result;
 
             // idealy use an auto-mapper
             var batch = new Entities.Batch
@@ -34,11 +33,7 @@ namespace Application.Services
                 CheckedInDate = model.CheckedInDate,
                 Product = product
             };
-            batch.Batch2Location.Add(new Entities.Batch2Location
-            {
-                LocationId = wareHouseLocationId,
-                Quantity = model.Quantity
-            });
+            this.UpdateBatchQuantity(batch, location, model.Quantity, true);
 
             batch.BatchItems.Add(new Entities.BatchItem
             {
@@ -55,7 +50,9 @@ namespace Application.Services
             // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
             var batch = _unitOfWork.BatchRepository.GetBatch(model.BatchId).Result;
             var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(model.ReasonId).Result;
-            var location = _unitOfWork.LocationRepository.Get(model.LocationId).Result;
+            var locationTo = _unitOfWork.LocationRepository.Get(model.LocationId).Result;
+            // TODO: Refactor to pass location in via model - so transfers from locations can take place
+            var locationFrom = _unitOfWork.LocationRepository.Get(_wareHouseLocationId).Result;
 
             // idealy use an auto-mapper
             var batchItem = new Entities.BatchItem
@@ -63,10 +60,37 @@ namespace Application.Services
                 Batch = batch,
                 Quantity = model.Quantity,
                 BatchUpdateReason = batchUpdateReason,
-                Location = location
+                Location = locationTo
             };
 
+            this.UpdateBatchQuantity(batch, locationTo, model.Quantity, true);
+            this.UpdateBatchQuantity(batch, locationFrom, model.Quantity, false);
+
             _unitOfWork.BatchItemRepository.Add(batchItem);
+        }
+
+        private void UpdateBatchQuantity(Entities.Batch batch, Entities.Location location, int quantity, bool isIncrement)
+        {
+            var batch2Location = batch.Batch2Location.FirstOrDefault(x => x.LocationId == location.Id);
+            if (batch2Location != null)
+            {
+                if (isIncrement)
+                {
+                    batch2Location.Quantity += quantity;
+                }
+                else
+                {
+                    batch2Location.Quantity -= quantity;
+                }
+            }
+            else
+            {
+                batch.Batch2Location.Add(new Entities.Batch2Location
+                {
+                    Location = location,
+                    Quantity = quantity
+                });
+            }
         }
 
         public async Task<Batch> GetBatch(long id)

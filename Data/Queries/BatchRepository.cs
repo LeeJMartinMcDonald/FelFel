@@ -33,6 +33,8 @@ namespace Data.Queries
         public async Task<Batch> GetBatch(long id)
         {
             return await _context.Batches
+                .Include(x => x.Batch2Location)
+                    .ThenInclude(b2l => b2l.Location)
                 .Include(x => x.BatchItems)
                 .FirstOrDefaultAsync(x => x.Id == id)
                 ;
