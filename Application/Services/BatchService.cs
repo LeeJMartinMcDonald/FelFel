@@ -17,11 +17,14 @@ namespace Application.Services
 
         public void AddNewBatch(BatchNew model)
         {
+            // TODO: add column type to location table - map to enum - 1 being warehouse
+            var wareHouseLocationId = 1;
+
             // TODO: Refactor - Create enum for reason ids
             // TODO: Add in foreign keys so items can be added by id instead of having to be looked up in services 
             var batchUpdateReason = _unitOfWork.BatchUpdateReasonRepository.Get(1).Result;
             var product = _unitOfWork.ProductRepository.Get(model.ProductId).Result;
-            var location = _unitOfWork.LocationRepository.Get(1).Result;
+            var location = _unitOfWork.LocationRepository.Get(wareHouseLocationId).Result;
 
             // idealy use an auto-mapper
             var batch = new Entities.Batch
@@ -31,6 +34,11 @@ namespace Application.Services
                 CheckedInDate = model.CheckedInDate,
                 Product = product
             };
+            batch.Batch2Location.Add(new Entities.Batch2Location
+            {
+                LocationId = wareHouseLocationId,
+                Quantity = model.Quantity
+            });
 
             batch.BatchItems.Add(new Entities.BatchItem
             {
