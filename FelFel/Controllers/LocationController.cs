@@ -34,10 +34,10 @@ namespace FelFel.Controllers
             return StatusCode(500, "Unable to retrieve locations.");
         }
 
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetLocationsWithQuantity()
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetLocationsWithQuantity(long id)
         {
-            var locations = await _locationService.GetLocationsWithQuantity();
+            var locations = await _locationService.GetLocationsWithQuantity(id);
             if (locations != null)
             {
                 return Ok(locations);

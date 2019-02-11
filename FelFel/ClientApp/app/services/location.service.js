@@ -49,16 +49,16 @@ var LocationService = /** @class */ (function (_super) {
             _this.locationsSubject.next(_);
         }), catchError(this.handleError("GetLocations")));
     };
-    LocationService.prototype.getLocationsWithQuantity = function () {
-        this.loadLocationsWithQuantity().subscribe();
+    LocationService.prototype.getLocationsWithQuantity = function (batchId) {
+        this.loadLocationsWithQuantity(batchId).subscribe();
         return this.locationsWithQuantitySubject.asObservable();
     };
-    LocationService.prototype.loadLocationsWithQuantity = function () {
+    LocationService.prototype.loadLocationsWithQuantity = function (batchId) {
         var _this = this;
-        return this.httpClient.get(this.appConfig.apiLocationUrl + "GetLocationsWithQuantity", httpOptions)
+        return this.httpClient.get(this.appConfig.apiLocationUrl + "GetLocationsWithQuantity/" + batchId, httpOptions)
             .pipe(tap(function (_) {
             _this.locationsWithQuantitySubject.next(_);
-        }), catchError(this.handleError("GetLocationsWithQuantity")));
+        }), catchError(this.handleError("GetLocationsWithQuantity/" + batchId)));
     };
     LocationService = __decorate([
         Injectable(),

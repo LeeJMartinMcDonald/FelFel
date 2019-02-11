@@ -50,22 +50,22 @@ export class LocationService extends BaseService {
         );
     }
 
-    getLocationsWithQuantity(): Observable<Location[]> {
-        this.loadLocationsWithQuantity().subscribe();
+    getLocationsWithQuantity(batchId: number): Observable<Location[]> {
+        this.loadLocationsWithQuantity(batchId).subscribe();
 
         return this.locationsWithQuantitySubject.asObservable();
     }
 
-    loadLocationsWithQuantity(): Observable<Location[]> {
+    loadLocationsWithQuantity(batchId: number): Observable<Location[]> {
         return this.httpClient.get<Location[]>(
-            `${this.appConfig.apiLocationUrl}GetLocationsWithQuantity`,
+            `${this.appConfig.apiLocationUrl}GetLocationsWithQuantity/${batchId}`,
             httpOptions)
             .pipe(
             tap(_ => {
                 this.locationsWithQuantitySubject.next(_);
             }
             ),
-            catchError(this.handleError<any>(`GetLocationsWithQuantity`))
+            catchError(this.handleError<any>(`GetLocationsWithQuantity/${batchId}`))
             );
     }
 }
